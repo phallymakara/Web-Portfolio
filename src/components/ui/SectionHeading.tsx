@@ -6,6 +6,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   action?: React.ReactNode;
   className?: string;
+  hasBorder?: boolean;
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -14,9 +15,10 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   subtitle,
   action,
   className = '',
+  hasBorder = true,
 }) => {
   return (
-    <div className={`flex flex-col sm:flex-row sm:items-end justify-between pb-4 mb-6 hairline-b ${className}`}>
+    <div className={`flex flex-col sm:flex-row sm:items-end justify-between pb-4 mb-6 ${hasBorder ? 'hairline-b' : ''} ${className}`}>
       <div>
         {number && (
           <span className="block font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase tracking-wider mb-1">

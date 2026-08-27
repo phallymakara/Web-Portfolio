@@ -1,8 +1,11 @@
 import React from 'react';
 import { ArrowUpRight, Github, Linkedin, Twitter, Mail } from 'lucide-react';
 import { profile } from '../../data/profile';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { lang, t } = useLanguage();
+
   return (
     <footer className="w-full hairline-t mt-20 bg-white dark:bg-zinc-950 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
@@ -14,19 +17,19 @@ export const Footer: React.FC = () => {
               {profile.name}
             </span>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              {profile.tagline}
+              {lang === 'km' ? t.hero.bioLine1 : profile.tagline}
             </p>
             <p className="text-xs font-mono text-zinc-600 dark:text-zinc-300">
-              {profile.location}
+              {lang === 'km' ? t.hero.location : profile.location}
             </p>
           </div>
 
-          {/* Col 2: Network */}
-          <div className="space-y-2">
+          {/* Col 2: Network (Two columns) */}
+          <div className="space-y-3">
             <span className="text-xs font-mono text-zinc-600 dark:text-zinc-300 uppercase tracking-wider block">
-              Network
+              {t.footer.network}
             </span>
-            <ul className="space-y-2 text-sm font-mono">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm font-mono">
               <li>
                 <a
                   href={profile.github}
@@ -80,7 +83,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 hairline-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 dark:text-zinc-300">
           <div>
-            © {new Date().getFullYear()} {profile.name}. All rights reserved.
+            © {new Date().getFullYear()} {profile.name}. {t.footer.rights}
           </div>
         </div>
       </div>

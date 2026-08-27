@@ -12,7 +12,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) =
 
   const categories: { id: 'all' | ProjectCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Projects', count: projects.length },
-    { id: 'ai-agents', label: 'AI Agents', count: projects.filter(p => p.category === 'ai-agents').length },
     { id: 'ai-ml', label: 'AI / ML', count: projects.filter(p => p.category === 'ai-ml').length },
     { id: 'backend', label: 'Backend', count: projects.filter(p => p.category === 'backend').length },
     { id: 'full-stack', label: 'Full-Stack', count: projects.filter(p => p.category === 'full-stack').length },
@@ -62,7 +61,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) =
       </div>
 
       {/* Projects List */}
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
         {filteredProjects.map(project => (
           <ProjectCard
             key={project.slug}

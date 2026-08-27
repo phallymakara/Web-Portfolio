@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Copy, Check } from 'lucide-react';
-import { profile } from '../../data/profile';
+import { Send, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface FormState {
   name: string;
   email: string;
-  subject: string;
   message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
-  subject?: string;
   message?: string;
 }
 
 export const ContactForm: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormState>({
     name: '',
     email: '',
-    subject: '',
     message: '',
   });
 
@@ -28,7 +26,6 @@ export const ContactForm: React.FC = () => {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const validateField = (field: keyof FormState, value: string): string | undefined => {
     switch (field) {
@@ -42,9 +39,6 @@ export const ContactForm: React.FC = () => {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           return 'Please enter a valid email address';
         }
-        return undefined;
-      case 'subject':
-        if (!value.trim()) return 'Please enter a subject';
         return undefined;
       case 'message':
         if (!value.trim()) return 'Please write your message';
@@ -82,14 +76,13 @@ export const ContactForm: React.FC = () => {
     e.preventDefault();
     
     // Mark all as touched
-    const allTouched = { name: true, email: true, subject: true, message: true };
+    const allTouched = { name: true, email: true, message: true };
     setTouched(allTouched);
 
     // Validate all fields
     const newErrors: FormErrors = {
       name: validateField('name', formData.name),
       email: validateField('email', formData.email),
-      subject: validateField('subject', formData.subject),
       message: validateField('message', formData.message),
     };
 
@@ -107,58 +100,36 @@ export const ContactForm: React.FC = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', message: '' });
       setTouched({});
       setErrors({});
     }, 800);
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(profile.email);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
   return (
-    <div className="space-y-8">
-      {/* Quick Direct Email Option */}
-      <div className="p-4 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <span className="block text-xs font-mono text-zinc-600 dark:text-zinc-400">Direct Inquiries:</span>
-          <span className="font-mono text-sm font-semibold text-zinc-900 dark:text-zinc-100">{profile.email}</span>
-        </div>
-        <button
-          type="button"
-          onClick={handleCopyEmail}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors self-start sm:self-auto focus:outline-none"
-        >
-          {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-          <span>{copiedEmail ? 'Copied to clipboard' : 'Copy email'}</span>
-        </button>
-      </div>
-
+    <div>
       {isSubmitted ? (
         <div className="p-8 border border-zinc-200 dark:border-zinc-800 text-center space-y-4">
           <CheckCircle2 className="w-8 h-8 mx-auto text-emerald-500" />
-          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Message Delivered</h3>
+          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">{t.sections.formSuccessTitle}</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
-            Thank you for reaching out. I usually review and respond to inquiries within 24 hours.
+            {t.sections.formSuccessMsg}
           </p>
           <button
             onClick={() => setIsSubmitted(false)}
             className="mt-4 px-4 py-2 text-xs font-mono border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none"
           >
-            Send Another Message
+            {t.sections.formSendAnother}
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} noValidate className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             
             {/* Name Input */}
             <div>
               <label htmlFor="name" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
-                Your Name <span className="text-zinc-600 dark:text-zinc-300">*</span>
+                {t.sections.formName} <span className="text-zinc-600 dark:text-zinc-300">*</span>
               </label>
               <input
                 type="text"
@@ -167,14 +138,13 @@ export const ContactForm: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="e.g. Alex Morgan"
+                placeholder="Alex Morgan"
                 className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
                   errors.name
                     ? 'border-rose-500 focus:border-rose-600'
                     : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
                 }`}
               />
-              {/* Inline plain error text - no container, no shadow, no technical jargon */}
               {errors.name && (
                 <p className="text-xs font-mono text-rose-500 mt-1.5">
                   {errors.name}
@@ -185,7 +155,7 @@ export const ContactForm: React.FC = () => {
             {/* Email Input */}
             <div>
               <label htmlFor="email" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
-                Email Address <span className="text-zinc-600 dark:text-zinc-300">*</span>
+                {t.sections.formEmail} <span className="text-zinc-600 dark:text-zinc-300">*</span>
               </label>
               <input
                 type="email"
@@ -194,14 +164,13 @@ export const ContactForm: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="e.g. alex@example.com"
+                placeholder="alex@example.com"
                 className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
                   errors.email
                     ? 'border-rose-500 focus:border-rose-600'
                     : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
                 }`}
               />
-              {/* Inline plain error text - no container, no shadow, no technical jargon */}
               {errors.email && (
                 <p className="text-xs font-mono text-rose-500 mt-1.5">
                   {errors.email}
@@ -210,45 +179,19 @@ export const ContactForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Subject Field */}
-          <div>
-            <label htmlFor="subject" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
-              Subject <span className="text-zinc-600 dark:text-zinc-300">*</span>
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="e.g. AI Agent Architecture Consulting / Project Collaboration"
-              className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
-                errors.subject
-                  ? 'border-rose-500 focus:border-rose-600'
-                  : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
-              }`}
-            />
-            {errors.subject && (
-              <p className="text-xs font-mono text-rose-500 mt-1.5">
-                {errors.subject}
-              </p>
-            )}
-          </div>
-
           {/* Message Textarea */}
           <div>
             <label htmlFor="message" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
-              Message <span className="text-zinc-600 dark:text-zinc-300">*</span>
+              {t.sections.formMessage} <span className="text-zinc-600 dark:text-zinc-300">*</span>
             </label>
             <textarea
               id="message"
               name="message"
-              rows={5}
+              rows={4}
               value={formData.message}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Provide context regarding your project scope, architecture goals, or timeline..."
+              placeholder="..."
               className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none resize-y ${
                 errors.message
                   ? 'border-rose-500 focus:border-rose-600'
@@ -264,8 +207,8 @@ export const ContactForm: React.FC = () => {
 
           {/* Submit Action */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-            <span className="text-xs font-mono text-zinc-600 dark:text-zinc-300">
-              * All fields are required.
+            <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
+              {t.sections.formRequiredNotice}
             </span>
             <button
               type="submit"
@@ -273,10 +216,10 @@ export const ContactForm: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white disabled:opacity-50 transition-colors focus:outline-none"
             >
               {isSubmitting ? (
-                <span>Sending...</span>
+                <span>{t.sections.formSending}</span>
               ) : (
                 <>
-                  <span>Send Message</span>
+                  <span>{t.sections.formSend}</span>
                   <Send className="w-3.5 h-3.5" />
                 </>
               )}

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Sun, Moon, Menu, X, Globe, Check } from 'lucide-react';
 import { profile } from '../../data/profile';
+import { useLanguage } from '../../context/LanguageContext';
 
 export type NavItem = 'home' | 'about' | 'projects' | 'stack' | 'work' | 'now' | 'blog' | 'contact';
 
@@ -18,18 +19,93 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+  const { lang, setLang, t } = useLanguage();
 
-  const navLinks: { id: NavItem; label: string }[] = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setShowLangMenu(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowLangMenu(false);
+      }
+    };
+
+    if (showLangMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showLangMenu]);
+
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = ['education', 'skills', 'experience', 'projects', 'contact'];
+      const scrollPos = window.scrollY + 140;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sectionIds[i]);
+          return;
+        }
+      }
+      if (window.scrollY < 200) {
+        setActiveSection('');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { id: 'education', label: t.nav.education },
+    { id: 'skills', label: t.nav.skills },
+    { id: 'experience', label: t.nav.experience },
+    { id: 'projects', label: t.nav.projects },
+    { id: 'contact', label: t.nav.contact },
   ];
 
-  const handleNavClick = (id: NavItem) => {
-    onNavigate(id);
+  const handleNavClick = (sectionId: string) => {
     setMobileMenuOpen(false);
+    if (activeTab !== 'home') {
+      onNavigate('home');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 80);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleLogoClick = () => {
+    setMobileMenuOpen(false);
+    if (activeTab !== 'home') {
+      onNavigate('home');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectLanguage = (selectedLang: 'en' | 'km') => {
+    setLang(selectedLang);
+    setShowLangMenu(false);
   };
 
   return (
@@ -38,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
         
         {/* Brand / Logo */}
         <button
-          onClick={() => handleNavClick('home')}
+          onClick={handleLogoClick}
           className="group flex items-center gap-2.5 text-left focus:outline-none"
         >
           <div className="w-8 h-8 flex items-center justify-center font-mono font-bold text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 transition-transform group-hover:scale-95">
@@ -54,15 +130,15 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = activeTab === link.id || (link.id === 'projects' && activeTab === 'project-detail') || (link.id === 'blog' && activeTab === 'blog-post');
+            const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-3 py-1.5 text-xs font-mono transition-colors relative ${
+                className={`px-3 py-1.5 text-xs font-mono transition-all relative ${
                   isActive
                     ? 'text-zinc-950 dark:text-white font-medium bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800'
-                    : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900/50'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900/50'
                 }`}
               >
                 {link.label}
@@ -71,22 +147,65 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Right actions: Theme toggle + Contact CTA / Mobile Toggle */}
+        {/* Right actions: Language Switcher Popup + Theme Toggle + Mobile Toggle */}
         <div className="flex items-center gap-2">
+          {/* Language Switch Icon & Popup */}
+          <div className="relative" ref={langMenuRef}>
+            <button
+              onClick={() => setShowLangMenu(!showLangMenu)}
+              aria-label="Select language"
+              aria-expanded={showLangMenu}
+              title="Select language / ជ្រើសរើសភាសា"
+              className="p-2 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
+            >
+              <Globe className="w-4 h-4" />
+            </button>
+
+            {/* Language Selection Popup */}
+            {showLangMenu && (
+              <div className="absolute right-0 top-full mt-2 w-48 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-1.5 shadow-xl z-50 animate-in fade-in slide-in-from-top-2 duration-150 space-y-1">
+                {/* English Option */}
+                <button
+                  onClick={() => handleSelectLanguage('en')}
+                  className={`w-full flex items-center justify-between px-3 py-2 text-xs font-mono text-left transition-colors ${
+                    lang === 'en'
+                      ? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-semibold'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span>English</span>
+                    <span className="text-[10px] text-zinc-400 font-normal">(EN)</span>
+                  </div>
+                  {lang === 'en' && <Check className="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />}
+                </button>
+
+                {/* Khmer Option */}
+                <button
+                  onClick={() => handleSelectLanguage('km')}
+                  className={`w-full flex items-center justify-between px-3 py-2 text-xs font-mono text-left transition-colors ${
+                    lang === 'km'
+                      ? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-semibold'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">ភាសាខ្មែរ</span>
+                    <span className="text-[10px] text-zinc-400 font-normal">(KH)</span>
+                  </div>
+                  {lang === 'km' && <Check className="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />}
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Color Theme Toggle */}
           <button
             onClick={onToggleTheme}
             aria-label="Toggle color theme"
             className="p-2 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-
-          <button
-            onClick={() => handleNavClick('contact')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white transition-colors focus:outline-none"
-          >
-            <span>Hire Me</span>
-            <ArrowUpRight className="w-3 h-3" />
           </button>
 
           {/* Mobile menu button */}
@@ -104,19 +223,19 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div className="md:hidden hairline-b bg-white dark:bg-zinc-950 px-4 py-4 space-y-1">
           {navLinks.map((link) => {
-            const isActive = activeTab === link.id;
+            const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`w-full flex items-center justify-between px-3 py-2 text-sm font-mono text-left transition-colors ${
+                className={`w-full text-left px-3 py-2 text-sm font-mono transition-colors flex items-center justify-between ${
                   isActive
-                    ? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white font-medium border-l-2 border-zinc-900 dark:border-zinc-100'
-                    : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                    ? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-medium'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'
                 }`}
               >
                 <span>{link.label}</span>
-                <span className="text-xs text-zinc-600 dark:text-zinc-300">/0{navLinks.indexOf(link) + 1}</span>
+                <span className="text-zinc-400 text-xs">→</span>
               </button>
             );
           })}

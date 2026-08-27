@@ -28,6 +28,7 @@ export interface Project {
   featured: boolean;
   githubUrl?: string;
   liveUrl?: string;
+  imageUrl?: string;
   tags: string[];
   details: ProjectDetailSection;
 }

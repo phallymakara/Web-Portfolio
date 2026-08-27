@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        sans: ['"Kantumruy Pro"', '"Kantumruy"', '"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Kantumruy Pro"', '"Kantumruy"', 'ui-monospace', 'monospace'],
+        khmer: ['"Kantumruy Pro"', '"Kantumruy"', 'sans-serif'],
       },
       colors: {
         zinc: {

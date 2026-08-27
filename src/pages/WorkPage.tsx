@@ -6,7 +6,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 export const WorkPage: React.FC = () => {
   return (
     <div className="space-y-16 py-6">
-      
+
       {/* Page Header */}
       <div className="space-y-4 pb-6 hairline-b">
         <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase tracking-wider block">
@@ -103,6 +103,11 @@ export const WorkPage: React.FC = () => {
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                 <div>
+                  {item.type && (
+                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 inline-block mb-1.5">
+                      {item.type}
+                    </span>
+                  )}
                   <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                     {item.institution}
                   </h3>

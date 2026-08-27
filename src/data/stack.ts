@@ -174,3 +174,45 @@ export const stackGroups: StackGroup[] = [
     ]
   }
 ];
+
+export interface SkillStackItem {
+  name: string;
+  icon: string;
+  category: 'ai-ml' | 'languages' | 'databases' | 'tools';
+  categoryLabel: string;
+}
+
+export const skillStackItems: SkillStackItem[] = [
+  // AI & ML
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", category: "ai-ml", categoryLabel: "Core AI" },
+  { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", category: "ai-ml", categoryLabel: "Deep Learning" },
+  { name: "Scikit-Learn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg", category: "ai-ml", categoryLabel: "ML Models" },
+  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg", category: "ai-ml", categoryLabel: "Data Prep" },
+  { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg", category: "ai-ml", categoryLabel: "Numerics" },
+  { name: "OpenCV", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg", category: "ai-ml", categoryLabel: "Vision" },
+  { name: "Pillow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-plain.svg", category: "ai-ml", categoryLabel: "Image Processing" },
+  { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg", category: "ai-ml", categoryLabel: "Plotting" },
+  { name: "Seaborn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", category: "ai-ml", categoryLabel: "Analytics Viz" },
+
+  // Languages & Web
+  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", category: "languages", categoryLabel: "Typed JS" },
+  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", category: "languages", categoryLabel: "Modern Web" },
+  { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg", category: "languages", categoryLabel: "Querying" },
+  { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", category: "languages", categoryLabel: "Markup" },
+  { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", category: "languages", categoryLabel: "Styling" },
+
+  // Databases & Storage
+  { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", category: "databases", categoryLabel: "Relational" },
+  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", category: "databases", categoryLabel: "RDBMS" },
+  { name: "SQL Server", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg", category: "databases", categoryLabel: "Enterprise DB" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", category: "databases", categoryLabel: "Document DB" },
+  { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", category: "databases", categoryLabel: "In-Memory" },
+
+  // Tools & Design
+  { name: "PowerBI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/powerbi/powerbi-original.svg", category: "tools", categoryLabel: "BI Analytics" },
+  { name: "Tableau", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tableau/tableau-original.svg", category: "tools", categoryLabel: "Dashboards" },
+  { name: "Excel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg", category: "tools", categoryLabel: "Spreadsheet" },
+  { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg", category: "tools", categoryLabel: "Notebooks" },
+  { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg", category: "tools", categoryLabel: "Digital Art" },
+  { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg", category: "tools", categoryLabel: "Vector Graphics" }
+];

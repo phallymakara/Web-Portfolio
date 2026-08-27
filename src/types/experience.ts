@@ -13,6 +13,8 @@ export interface EducationItem {
   degree: string;
   period: string;
   location: string;
+  type?: string;
+  description?: string;
   honors?: string;
   relevantCoursework?: string[];
 }
@@ -22,4 +24,17 @@ export interface AchievementItem {
   issuer: string;
   year: string;
   description: string;
+}
+
+export interface CertificateItem {
+  id: string;
+  title: string;
+  issuer: string;
+  issueDate: string;
+  credentialUrl?: string;
+  imageUrl?: string;
+  skills: string[];
+  type?: string;
+  description?: string;
+  category?: 'ai-ml' | 'web' | 'data' | 'design' | string;
 }
