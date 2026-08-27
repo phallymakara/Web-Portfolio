@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar matching Flaco minimal editorial theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e4e4e7;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #27272a;
+  }
+}
+
+/* Hairline divider helpers */
+.hairline-b {
+  border-bottom: 1px solid theme('colors.zinc.200');
+}
+.dark .hairline-b {
+  border-bottom: 1px solid theme('colors.zinc.800');
+}
+
+.hairline-t {
+  border-top: 1px solid theme('colors.zinc.200');
+}
+.dark .hairline-t {
+  border-top: 1px solid theme('colors.zinc.800');
+}
+
+.hairline-r {
+  border-right: 1px solid theme('colors.zinc.200');
+}
+.dark .hairline-r {
+  border-right: 1px solid theme('colors.zinc.800');
+}
+
+.hairline-l {
+  border-left: 1px solid theme('colors.zinc.200');
+}
+.dark .hairline-l {
+  border-left: 1px solid theme('colors.zinc.800');
+}
+
+.hairline-all {
+  border: 1px solid theme('colors.zinc.200');
+}
+.dark .hairline-all {
+  border: 1px solid theme('colors.zinc.800');
+}
