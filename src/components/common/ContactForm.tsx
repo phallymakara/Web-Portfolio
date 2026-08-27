@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface FormState {
@@ -218,10 +218,7 @@ export const ContactForm: React.FC = () => {
               {isSubmitting ? (
                 <span>{t.sections.formSending}</span>
               ) : (
-                <>
-                  <span>{t.sections.formSend}</span>
-                  <Send className="w-3.5 h-3.5" />
-                </>
+                <span>{t.sections.formSend}</span>
               )}
             </button>
           </div>

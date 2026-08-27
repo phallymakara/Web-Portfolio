@@ -104,6 +104,8 @@ export interface Translations {
     period: string;
     location: string;
     description: string;
+    keyAreasTitle?: string;
+    keyAreas?: string[];
   }[];
   // Experience Items
   experienceItems: {
@@ -225,66 +227,103 @@ export const translations: Record<Language, Translations> = {
     },
     educationItems: [
       {
-        degree: "Bachelor of Science in Computer Science",
-        institution: "Paragon International University",
-        period: "2021 — 2025",
+        degree: "Data Science and Engineering — Bachelor's Degree",
+        institution: "Institute of Technology of Cambodia",
+        period: "Nov 2022 — Aug 2026",
         location: "Phnom Penh, Cambodia",
-        description: "Specialized in advanced algorithms, artificial intelligence, software engineering methodologies, distributed systems, and computer vision. Developed autonomous robotics navigation and ML pipelines for research thesis."
+        description: "Specializing in artificial intelligence, machine learning pipelines, data analytics, and database engineering.",
+        keyAreasTitle: "Key Areas of Study",
+        keyAreas: [
+          "Data Science & Statistical Analysis",
+          "Machine Learning & Artificial Intelligence",
+          "Deep Learning & Neural Networks",
+          "Data Analytics & Visualization",
+          "Database Engineering & SQL",
+          "Data Engineering & ETL Pipelines"
+        ]
       },
       {
-        degree: "English for Academic Purposes & Advanced ESL",
-        institution: "Australian Centre for Education (ACE)",
-        period: "2019 — 2022",
-        location: "Phnom Penh, Cambodia",
-        description: "Intensive training in international academic writing, technical research dissemination, presentation delivery, and professional global team collaboration."
+        degree: "Web Development (Short Course — Online)",
+        institution: "Frontend Master",
+        period: "Nov 2025 — Jan 2026",
+        location: "Online",
+        description: "Short course in modern web development, JavaScript frontend architectures, and responsive user interfaces.",
+        keyAreasTitle: "Key Areas of Study",
+        keyAreas: [
+          "HTML5, CSS3 & Modern Web Standards",
+          "JavaScript & TypeScript",
+          "React.js & Component-Based Architecture",
+          "State Management & React Hooks",
+          "Responsive Web Design & UI/UX Implementation",
+          "REST API Integration & Frontend–Backend Communication",
+          "Modern Frontend Development with Vite",
+          "Tailwind CSS & Modern UI Development",
+          "Advanced React Patterns & Application Architecture",
+          "Git, GitHub & Frontend Development Workflow"
+        ]
       },
       {
-        degree: "General English Program (GEP Level 12)",
-        institution: "Australian Centre for Education (ACE)",
-        period: "2017 — 2019",
-        location: "Phnom Penh, Cambodia",
-        description: "Advanced fluency in professional English communication, structured debate, contextual analysis, and cross-cultural technical documentation."
+        degree: "Graphic Design — Short Course",
+        institution: "DTC Center",
+        period: "Nov 2022 — Apr 2023",
+        location: "Obekaom, Phnom Penh, Cambodia",
+        description: "Short course focusing on graphic design, visual branding, typography, and marketing assets with Adobe Photoshop & Illustrator.",
+        keyAreasTitle: "Key Areas of Study",
+        keyAreas: [
+          "Graphic Design Fundamentals & Design Principles",
+          "Adobe Photoshop & Image Editing",
+          "Adobe Illustrator & Vector Graphics",
+          "Typography & Color Theory",
+          "Logo & Brand Identity Design",
+          "Poster, Banner & Social Media Design",
+          "Layout Composition & Visual Communication",
+          "Print & Digital Design Production"
+        ]
       },
       {
-        degree: "High School National Diploma",
-        institution: "Hun Sen Kampong Leav High School",
-        period: "2015 — 2021",
-        location: "Prey Veng, Cambodia",
-        description: "Graduated with highest honors with focus in advanced mathematics, physics, and natural sciences. Active participant in national STEM competitions."
+        degree: "Bacc II — (National Examination)",
+        institution: "Chankresna High School",
+        period: "Jan 2018 — Jan 2021",
+        location: "Mesang District, Prey Veng Province, Cambodia",
+        description: "Completed Grade 12 in 2021, with a strong foundation in Mathematics, Physics, Biology, and Chemistry. Developed essential academic skills in problem-solving, critical thinking, scientific analysis, and independent learning through coursework and examination preparation. Demonstrated commitment, discipline, and perseverance while completing secondary education and preparing for future academic and professional opportunities."
       }
     ],
     experienceItems: [
       {
-        company: "Apex Neural Labs",
-        role: "Lead AI & Backend Systems Engineer",
-        period: "2024 — Present",
-        location: "Remote / Singapore",
-        description: "Leading the core platform engineering team responsible for high-throughput multi-agent execution engines, retrieval infrastructure, and distributed microservices.",
+        company: "AI & Intelligent Systems",
+        role: "AI Engineer",
+        period: "Late 2025 — Present",
+        location: "Phnom Penh, Cambodia",
+        description: "Develop and integrate AI-powered applications and intelligent systems with modern backend APIs and database architectures.",
         highlights: [
-          "Architected an asynchronous multi-agent orchestration runtime handling over 2.5 million daily agentic reasoning turns.",
-          "Reduced LLM inference cost by 42% through semantic caching, cross-encoder thresholding, and prompt distillation."
+          "Develop and integrate AI-powered applications and intelligent systems.",
+          "Work with Python, machine learning, LLMs, RAG, and AI agent technologies.",
+          "Design and implement AI solutions with backend APIs and database integration.",
+          "Build, test, and deploy AI features for real-world applications."
         ]
       },
       {
-        company: "Vanguard Tech Solutions",
-        role: "Senior Backend Engineer",
-        period: "2022 — 2024",
+        company: "Tech Education",
+        role: "Python Programming Instructor",
+        period: "~6 Months",
         location: "Phnom Penh, Cambodia",
-        description: "Designed distributed transaction engines, microservice gateways, and real-time streaming architectures for financial and logistics clients.",
+        description: "Taught Python programming fundamentals and practical software concepts to learners and university students.",
         highlights: [
-          "Engineered an event-driven payment reconciliation system processing $18M+ monthly transactions with zero data loss.",
-          "Implemented a zero-trust API gateway handling 15,000 requests/sec with p99 latency under 4ms."
+          "Taught Python programming fundamentals and practical programming concepts.",
+          "Guided students through problem-solving, algorithms, and hands-on coding exercises.",
+          "Helped learners develop a strong foundation in Python programming."
         ]
       },
       {
-        company: "Kiri Data Systems",
-        role: "Full-Stack Software Engineer",
-        period: "2020 — 2022",
+        company: "Private School Education",
+        role: "Mathematics Teacher",
+        period: "~2 Years",
         location: "Phnom Penh, Cambodia",
-        description: "Built scalable web applications, internal telemetry dashboards, and automated CI pipelines for client enterprise systems.",
+        description: "Taught mathematics to students across various learning levels with emphasis on analytical problem-solving and logical reasoning.",
         highlights: [
-          "Developed high-density analytics dashboards using React, TypeScript, and WebSockets.",
-          "Authored REST APIs and background worker queues in Node.js and Python."
+          "Taught mathematics to students across different learning levels.",
+          "Explained mathematical concepts through practical examples and problem-solving.",
+          "Developed students' analytical thinking, logical reasoning, and problem-solving skills."
         ]
       }
     ],
@@ -396,66 +435,103 @@ export const translations: Record<Language, Translations> = {
     },
     educationItems: [
       {
-        degree: "បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រ (Computer Science)",
-        institution: "សាកលវិទ្យាល័យអន្តរជាតិ ផារ៉ាហ្គន (ParagonU)",
-        period: "២០២១ — ២០២៥",
+        degree: "វិទ្យាសាស្ត្រទិន្នន័យ និងវិស្វកម្ម — បរិញ្ញាបត្រ",
+        institution: "វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា (ITC)",
+        period: "វិច្ឆិកា ២០២២ — សីហា ២០២៦",
         location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-        description: "ជំនាញឯកទេសលើក្បួនដោះស្រាយកម្រិតខ្ពស់ (Algorithms), បញ្ញាសិប្បនិម្មិត (AI), វិធីសាស្ត្រវិស្វកម្មផ្នែកទន់, ប្រព័ន្ធចែកចាយ (Distributed Systems) និង Computer Vision។ បានស្រាវជ្រាវ និងបង្កើតប្រព័ន្ធរ៉ូបូតស្វ័យប្រវត្ត និង Machine Learning សម្រាប់សារណាបញ្ចប់ការសិក្សា។"
+        description: "សិក្សាផ្តោតលើបញ្ញាសិប្បនិម្មិត (AI), Machine Learning, ការវិភាគទិន្នន័យ (Data Analytics) និងវិស្វកម្មមូលដ្ឋានទិន្នន័យ។",
+        keyAreasTitle: "មុខវិជ្ជា និងជំនាញស្រាវជ្រាវស្នូល",
+        keyAreas: [
+          "Data Science & Statistical Analysis",
+          "Machine Learning & Artificial Intelligence",
+          "Deep Learning & Neural Networks",
+          "Data Analytics & Visualization",
+          "Database Engineering & SQL",
+          "Data Engineering & ETL Pipelines"
+        ]
       },
       {
-        degree: "ភាសាអង់គ្លេសសម្រាប់ការសិក្សា & កម្រិតខ្ពស់ (EAP)",
-        institution: "មជ្ឈមណ្ឌលអូស្ត្រាលីសម្រាប់ការបណ្តុះបណ្តាល (ACE)",
-        period: "២០១៩ — ២០២២",
-        location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-        description: "ការបណ្តុះបណ្តាលស៊ីជម្រៅលើការសរសេរឯកសារស្រាវជ្រាវបែបបច្ចេកទេស ការធ្វើបទបង្ហាញកម្រិតអន្តរជាតិ និងការធ្វើការងារជាក្រុមប្រកបដោយវិជ្ជាជីវៈ។"
+        degree: "ការអភិវឌ្ឍគេហទំព័រ (វគ្គខ្លី — អនឡាញ)",
+        institution: "Frontend Master",
+        period: "វិច្ឆិកា ២០២៥ — មករា ២០២៦",
+        location: "អនឡាញ",
+        description: "វគ្គខ្លីលើការអភិវឌ្ឍគេហទំព័រទំនើប, JavaScript, ស្ថាបត្យកម្ម Frontend និងការបង្កើតគេហទំព័រ Responsive។",
+        keyAreasTitle: "មុខវិជ្ជា និងជំនាញស្រាវជ្រាវស្នូល",
+        keyAreas: [
+          "HTML5, CSS3 & Modern Web Standards",
+          "JavaScript & TypeScript",
+          "React.js & Component-Based Architecture",
+          "State Management & React Hooks",
+          "Responsive Web Design & UI/UX Implementation",
+          "REST API Integration & Frontend–Backend Communication",
+          "Modern Frontend Development with Vite",
+          "Tailwind CSS & Modern UI Development",
+          "Advanced React Patterns & Application Architecture",
+          "Git, GitHub & Frontend Development Workflow"
+        ]
       },
       {
-        degree: "កម្មវិធីភាសាអង់គ្លេសទូទៅ (GEP Level 12)",
-        institution: "មជ្ឈមណ្ឌលអូស្ត្រាលីសម្រាប់ការបណ្តុះបណ្តាល (ACE)",
-        period: "២០១៧ — ២០១៩",
-        location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-        description: "ភាពស្ទាត់ជំនាញកម្រិតខ្ពស់ក្នុងការប្រាស្រ័យទាក់ទងភាសាអង់គ្លេសបែបវិជ្ជាជីវៈ ការជជែកដេញដោល និងការវិភាគទិន្នន័យបច្ចេកទេស។"
+        degree: "ការរចនាក្រាហ្វិក (Graphic Design — វគ្គខ្លី)",
+        institution: "មជ្ឈមណ្ឌល DTC (DTC Center)",
+        period: "វិច្ឆិកា ២០២២ — មេសា ២០២៣",
+        location: "អូរបែកក្អម, រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
+        description: "វគ្គខ្លីផ្តោតលើការរចនាក្រាហ្វិក, អត្តសញ្ញាណម៉ាកយីហោ (Branding), Typography និងការបង្កើតផ្ទាំងផ្សព្វផ្សាយដោយប្រើប្រាស់ Adobe Photoshop & Illustrator។",
+        keyAreasTitle: "មុខវិជ្ជា និងជំនាញស្រាវជ្រាវស្នូល",
+        keyAreas: [
+          "Graphic Design Fundamentals & Design Principles",
+          "Adobe Photoshop & Image Editing",
+          "Adobe Illustrator & Vector Graphics",
+          "Typography & Color Theory",
+          "Logo & Brand Identity Design",
+          "Poster, Banner & Social Media Design",
+          "Layout Composition & Visual Communication",
+          "Print & Digital Design Production"
+        ]
       },
       {
         degree: "សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប)",
-        institution: "វិទ្យាល័យ ហ៊ុន សែន កំពង់លាវ",
-        period: "២០១៥ — ២០២១",
-        location: "ខេត្តព្រៃវែង, ប្រទេសកម្ពុជា",
-        description: "បានបញ្ចប់ការសិក្សាដោយទទួលបាននិទ្ទេសល្អប្រសើរ លើមុខវិជ្ជាគណិតវិទ្យា រូបវិទ្យា និងវិទ្យាសាស្ត្រពិត ព្រមទាំងបានចូលរួមយ៉ាងសកម្មក្នុងការប្រកួតប្រជែង STEM ថ្នាក់ជាតិ។"
+        institution: "វិទ្យាល័យចាន់គ្រឹះស្នា (Chankresna High School)",
+        period: "មករា ២០១៨ — មករា ២០២១",
+        location: "ស្រុកមេសាង, ខេត្តព្រៃវែង, ប្រទេសកម្ពុជា",
+        description: "បានបញ្ចប់ការសិក្សាថ្នាក់ទី១២ ក្នុងឆ្នាំ២០២១ ជាមួយនឹងមូលដ្ឋានគ្រឹះរឹងមាំលើមុខវិជ្ជា គណិតវិទ្យា រូបវិទ្យា ជីវវិទ្យា និងគីមីវិទ្យា។ បណ្តុះបណ្តាលជំនាញសិក្សាស្នូលលើការដោះស្រាយបញ្ហា ការគិតបែបស៊ីជម្រៅ ការវិភាគវិទ្យាសាស្ត្រ និងការរៀនសូត្រដោយឯករាជ្យតាមរយៈការត្រៀមប្រឡងថ្នាក់ជាតិ (បាក់ឌុប)។"
       }
     ],
     experienceItems: [
       {
-        company: "Apex Neural Labs",
-        role: "ប្រធានវិស្វករប្រព័ន្ធ AI & Backend",
-        period: "២០២៤ — បច្ចុប្បន្ន",
-        location: "ពីចម្ងាយ / ប្រទេសសិង្ហបុរី",
-        description: "ដឹកនាំក្រុមវិស្វកម្មស្នូលក្នុងការបង្កើតប្រព័ន្ធប្រតិបត្តិការ Multi-Agent AI ខ្នាតធំ ស្ថាបត្យកម្ម Retrieval និងប្រព័ន្ធ Microservices ចែកចាយ។",
+        company: "AI & Intelligent Systems",
+        role: "វិស្វករ AI (AI Engineer)",
+        period: "ចុងឆ្នាំ ២០២៥ — បច្ចុប្បន្ន",
+        location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
+        description: "បង្កើត និងតភ្ជាប់កម្មវិធីដំណើរការដោយ AI, ប្រព័ន្ធឆ្លាតវៃ និងស្ថាបត្យកម្ម Backend APIs និងប្រព័ន្ធមូលដ្ឋានទិន្នន័យ។",
         highlights: [
-          "បង្កើតស្ថាបត្យកម្ម Asynchronous Multi-Agent Runtime ដែលដំណើរការជាង ២.៥ លាន Agentic Reasoning Turns ប្រចាំថ្ងៃ។",
-          "កាត់បន្ថយថ្លៃចំណាយលើ LLM Inference រហូតដល់ ៤២% តាមរយៈ Semantic Caching និង Prompt Distillation។"
+          "បង្កើត និងតភ្ជាប់កម្មវិធីដំណើរការដោយ AI និងប្រព័ន្ធឆ្លាតវៃ។",
+          "ធ្វើការជាមួយ Python, Machine Learning, LLMs, RAG និងបច្ចេកវិទ្យា AI Agents។",
+          "រចនា និងអនុវត្តដំណោះស្រាយ AI ជាមួយ Backend APIs និងប្រព័ន្ធមូលដ្ឋានទិន្នន័យ។",
+          "បង្កើត សាកល្បង និងដាក់ឱ្យដំណើរការមុខងារ AI សម្រាប់កម្មវិធីជាក់ស្តែង។"
         ]
       },
       {
-        company: "Vanguard Tech Solutions",
-        role: "វិស្វករជាន់ខ្ពស់ Backend",
-        period: "២០២២ — ២០២៤",
+        company: "Tech Education",
+        role: "គ្រូបង្រៀនសរសេរកូដ Python (Python Programming Instructor)",
+        period: "~៦ ខែ",
         location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-        description: "រៀបចំប្រព័ន្ធ Transaction Engine ប្រព័ន្ធ API Gateway និងប្រព័ន្ធ Real-time Streaming សម្រាប់អតិថិជនវិស័យហិរញ្ញវត្ថុ និងដឹកជញ្ជូន។",
+        description: "បង្រៀនមូលដ្ឋានគ្រឹះសរសេរកូដ Python និងគោលគំនិតសរសេរកម្មវិធីជាក់ស្តែងដល់និស្សិតសាកលវិទ្យាល័យ និងអ្នកសិក្សា។",
         highlights: [
-          "បង្កើតប្រព័ន្ធផ្ទៀងផ្ទាត់ការទូទាត់បែប Event-driven ដែលដំណើរការប្រតិបត្តិការជាង $18M+ ប្រចាំខែដោយគ្មានការបាត់បង់ទិន្នន័យ។",
-          "អនុវត្តប្រព័ន្ធ Zero-trust API Gateway ដំណើរការ ១៥,០០០ សំណើ/វិនាទី ជាមួយ Latency ក្រោម 4ms។"
+          "បង្រៀនមូលដ្ឋានគ្រឹះសរសេរកូដ Python និងគោលគំនិតសរសេរកម្មវិធីជាក់ស្តែង។",
+          "ណែនាំសិស្សក្នុងការដោះស្រាយបញ្ហា ក្បួនដោះស្រាយ (Algorithms) និងការអនុវត្តកូដជាក់ស្តែង។",
+          "ជួយអ្នកសិក្សាកសាងមូលដ្ឋានគ្រឹះយ៉ាងរឹងមាំក្នុងការសរសេរកម្មវិធី Python។"
         ]
       },
       {
-        company: "Kiri Data Systems",
-        role: "វិស្វករផ្នែកទន់ Full-Stack",
-        period: "២០២០ — ២០២២",
+        company: "Private School Education",
+        role: "គ្រូបង្រៀនគណិតវិទ្យា (Mathematics Teacher)",
+        period: "~២ ឆ្នាំ",
         location: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-        description: "បង្កើតកម្មវិធីគេហទំព័រខ្នាតធំ ផ្ទាំងគ្រប់គ្រងទិន្នន័យ (Telemetry Dashboards) និងស្វ័យប្រវត្តិកម្ម CI/CD សម្រាប់ប្រព័ន្ធសហគ្រាស។",
+        description: "បង្រៀនគណិតវិទ្យាដល់សិស្សានុសិស្សគ្រប់កម្រិតសិក្សា ដោយសង្កត់ធ្ងន់លើការគិតបែបវិភាគ និងការដោះស្រាយបញ្ហាតាមបែបឡូជីខល។",
         highlights: [
-          "បង្កើតផ្ទាំងវិភាគទិន្នន័យកម្រិតខ្ពស់ដោយប្រើប្រាស់ React, TypeScript និង WebSockets។",
-          "បង្កើត REST APIs និងប្រព័ន្ធ Background Worker Queues ដោយប្រើប្រាស់ Node.js និង Python។"
+          "បង្រៀនគណិតវិទ្យាដល់សិស្សានុសិស្សគ្រប់កម្រិតសិក្សាផ្សេងៗគ្នា។",
+          "ពន្យល់ពីគោលគំនិតគណិតវិទ្យាតាមរយៈឧទាហរណ៍ជាក់ស្តែង និងការដោះស្រាយបញ្ហា។",
+          "អភិវឌ្ឍការគិតវិភាគ ការគិតបែបឡូជីខល និងជំនាញដោះស្រាយបញ្ហារបស់សិស្ស។"
         ]
       }
     ],

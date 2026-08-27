@@ -19,7 +19,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const [showContactPopup, setShowContactPopup] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeCertCategory, setActiveCertCategory] = useState<'all' | 'ai-ml' | 'web' | 'data' | 'design'>('all');
-  const [activeStackCategory, setActiveStackCategory] = useState<'all' | 'ai-ml' | 'languages' | 'databases' | 'tools'>('all');
+  const [activeStackCategory, setActiveStackCategory] = useState<'ai-ml' | 'languages' | 'databases' | 'tools'>('ai-ml');
   const [activeProjectCategory, setActiveProjectCategory] = useState<'all' | 'ai-agents' | 'ai-ml' | 'backend' | 'full-stack'>('all');
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -36,16 +36,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     : certificates.filter(c => c.category === activeCertCategory);
 
   const stackCategories = [
-    { id: 'all', label: t.sections.filterAll },
     { id: 'ai-ml', label: t.sections.filterAiMl },
     { id: 'languages', label: t.sections.filterLanguages },
     { id: 'databases', label: t.sections.filterDatabases },
     { id: 'tools', label: t.sections.filterTools },
   ];
 
-  const filteredSkills = activeStackCategory === 'all'
-    ? skillStackItems
-    : skillStackItems.filter(s => s.category === activeStackCategory);
+  const filteredSkills = skillStackItems.filter(s => s.category === activeStackCategory);
 
   const projectCategories = [
     { id: 'all', label: t.sections.projectFilterAll },
@@ -323,15 +320,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       </p>
 
                       {/* Description / Highlights Box Container */}
-                      {item.description && (
+                      {(item.description || item.keyAreas || originalItem?.keyAreas) && (
                         <div
-                          className={`mt-2.5 p-3 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-2 ${
+                          className={`mt-2.5 p-3.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-3 ${
                             isEven ? 'md:text-right' : 'md:text-left'
                           }`}
                         >
-                          <p className="text-sm sm:text-[14.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                            {item.description}
-                          </p>
+                          {item.description && (
+                            <p className="text-sm sm:text-[14.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                              {item.description}
+                            </p>
+                          )}
+
+                          {(item.keyAreas || originalItem?.keyAreas) && (
+                            <div className="space-y-2 pt-2 border-t border-zinc-200/70 dark:border-zinc-800/70 text-left">
+                              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold block text-left">
+                                {item.keyAreasTitle || originalItem?.keyAreasTitle || 'Key Areas of Study'}
+                              </span>
+                              <ul className="space-y-1.5 text-left">
+                                {(item.keyAreas || originalItem?.keyAreas)?.map((area, aIdx) => (
+                                  <li
+                                    key={aIdx}
+                                    className="text-xs font-mono text-zinc-600 dark:text-zinc-300 flex items-start gap-2 text-left justify-start"
+                                  >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1 shrink-0" />
+                                    <span>{area}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
@@ -538,7 +556,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="space-y-10 md:space-y-12">
             {(t.experienceItems || experience).map((item, idx) => {
               const isEven = idx % 2 === 0;
-              const originalExp = experience[idx];
               return (
                 <div
                   key={idx}
@@ -598,38 +615,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                           </p>
 
                           {item.highlights && item.highlights.length > 0 && (
-                            <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 pt-1">
-                              {item.highlights.slice(0, 2).map((highlight, hIdx) => (
+                            <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 pt-1 text-left">
+                              {item.highlights.map((highlight, hIdx) => (
                                 <li
                                   key={hIdx}
-                                  className={`flex items-start gap-2 ${
-                                    isEven ? 'md:flex-row-reverse md:text-right' : 'md:text-left'
-                                  }`}
+                                  className="flex items-start gap-2 text-left justify-start"
                                 >
-                                  <span className="text-zinc-500 font-mono text-xs pt-0.5 shrink-0">
-                                    0{hIdx + 1}.
-                                  </span>
+                                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0" />
                                   <span>{highlight}</span>
                                 </li>
                               ))}
                             </ul>
-                          )}
-
-                          {originalExp?.tech && originalExp.tech.length > 0 && (
-                            <div
-                              className={`pt-2 hairline-t flex flex-wrap gap-1.5 ${
-                                isEven ? 'md:justify-end' : 'md:justify-start'
-                              }`}
-                            >
-                              {originalExp.tech.map((tTag) => (
-                                <span
-                                  key={tTag}
-                                  className="text-[11px] font-mono bg-white dark:bg-zinc-950 text-zinc-700 dark:text-zinc-300 px-2 py-0.5 border border-zinc-200 dark:border-zinc-800"
-                                >
-                                  {tTag}
-                                </span>
-                              ))}
-                            </div>
                           )}
                         </div>
                       )}

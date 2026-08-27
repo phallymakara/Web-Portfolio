@@ -5,7 +5,7 @@ export interface ExperienceItem {
   location: string;
   description: string;
   highlights: string[];
-  tech: string[];
+  tech?: string[];
 }
 
 export interface EducationItem {
@@ -17,6 +17,8 @@ export interface EducationItem {
   description?: string;
   honors?: string;
   relevantCoursework?: string[];
+  keyAreasTitle?: string;
+  keyAreas?: string[];
 }
 
 export interface AchievementItem {

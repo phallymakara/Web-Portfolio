@@ -57,29 +57,18 @@ export const WorkPage: React.FC = () => {
                 {item.description}
               </p>
 
-              <div className="space-y-2 pt-2">
-                <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase block">
+              <div className="space-y-2 pt-2 text-left">
+                <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
                   Key Accomplishments:
                 </span>
-                <ul className="space-y-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                <ul className="space-y-1.5 text-sm text-zinc-600 dark:text-zinc-400 text-left">
                   {item.highlights.map((highlight, hIdx) => (
-                    <li key={hIdx} className="flex items-start gap-2">
-                      <span className="text-zinc-600 dark:text-zinc-300 font-mono text-xs pt-1">0{hIdx + 1}.</span>
+                    <li key={hIdx} className="flex items-start gap-2 justify-start text-left">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0" />
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              <div className="pt-4 hairline-t flex flex-wrap gap-1.5">
-                {item.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[11px] font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 px-2 py-0.5"
-                  >
-                    {t}
-                  </span>
-                ))}
               </div>
             </div>
           ))}
@@ -127,6 +116,25 @@ export const WorkPage: React.FC = () => {
               {item.honors && (
                 <div className="p-3 bg-zinc-50 dark:bg-zinc-900/60 border-l-2 border-zinc-900 dark:border-zinc-100 text-xs font-mono text-zinc-800 dark:text-zinc-200">
                   {item.honors}
+                </div>
+              )}
+
+              {item.keyAreas && (
+                <div className="space-y-2 pt-2 text-left">
+                  <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
+                    {item.keyAreasTitle || 'Key Areas of Study'}:
+                  </span>
+                  <ul className="space-y-1.5 text-left">
+                    {item.keyAreas.map((area, aIdx) => (
+                      <li
+                        key={aIdx}
+                        className="text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-start gap-2 justify-start"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1 shrink-0" />
+                        <span>{area}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
 
