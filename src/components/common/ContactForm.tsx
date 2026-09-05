@@ -128,7 +128,7 @@ export const ContactForm: React.FC = () => {
             
             {/* Name Input */}
             <div>
-              <label htmlFor="name" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
+              <label htmlFor="name" className="block text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2 font-medium">
                 {t.sections.formName} <span className="text-zinc-600 dark:text-zinc-300">*</span>
               </label>
               <input
@@ -139,14 +139,14 @@ export const ContactForm: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Alex Morgan"
-                className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
+                className={`w-full px-3.5 py-2.5 text-sm sm:text-base bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
                   errors.name
                     ? 'border-rose-500 focus:border-rose-600'
                     : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
                 }`}
               />
               {errors.name && (
-                <p className="text-xs font-mono text-rose-500 mt-1.5">
+                <p className="text-xs sm:text-sm font-mono text-rose-500 mt-1.5">
                   {errors.name}
                 </p>
               )}
@@ -154,7 +154,7 @@ export const ContactForm: React.FC = () => {
 
             {/* Email Input */}
             <div>
-              <label htmlFor="email" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
+              <label htmlFor="email" className="block text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2 font-medium">
                 {t.sections.formEmail} <span className="text-zinc-600 dark:text-zinc-300">*</span>
               </label>
               <input
@@ -165,14 +165,14 @@ export const ContactForm: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="alex@example.com"
-                className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
+                className={`w-full px-3.5 py-2.5 text-sm sm:text-base bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none ${
                   errors.email
                     ? 'border-rose-500 focus:border-rose-600'
                     : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
                 }`}
               />
               {errors.email && (
-                <p className="text-xs font-mono text-rose-500 mt-1.5">
+                <p className="text-xs sm:text-sm font-mono text-rose-500 mt-1.5">
                   {errors.email}
                 </p>
               )}
@@ -181,7 +181,7 @@ export const ContactForm: React.FC = () => {
 
           {/* Message Textarea */}
           <div>
-            <label htmlFor="message" className="block text-xs font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2">
+            <label htmlFor="message" className="block text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-2 font-medium">
               {t.sections.formMessage} <span className="text-zinc-600 dark:text-zinc-300">*</span>
             </label>
             <textarea
@@ -192,14 +192,14 @@ export const ContactForm: React.FC = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="..."
-              className={`w-full px-3.5 py-2.5 text-sm bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none resize-y ${
+              className={`w-full px-3.5 py-2.5 text-sm sm:text-base bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 border transition-colors focus:outline-none resize-y ${
                 errors.message
                   ? 'border-rose-500 focus:border-rose-600'
                   : 'border-zinc-200 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-zinc-100'
               }`}
             />
             {errors.message && (
-              <p className="text-xs font-mono text-rose-500 mt-1.5">
+              <p className="text-xs sm:text-sm font-mono text-rose-500 mt-1.5">
                 {errors.message}
               </p>
             )}
@@ -207,13 +207,13 @@ export const ContactForm: React.FC = () => {
 
           {/* Submit Action */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-            <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
+            <span className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400">
               {t.sections.formRequiredNotice}
             </span>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white disabled:opacity-50 transition-colors focus:outline-none"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs sm:text-sm font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white disabled:opacity-50 transition-colors focus:outline-none"
             >
               {isSubmitting ? (
                 <span>{t.sections.formSending}</span>

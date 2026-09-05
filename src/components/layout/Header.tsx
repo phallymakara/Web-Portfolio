@@ -115,15 +115,11 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Brand / Logo */}
         <button
           onClick={handleLogoClick}
-          className="group flex items-center gap-2.5 text-left focus:outline-none"
+          aria-label={profile.name}
+          className="group flex items-center focus:outline-none"
         >
           <div className="w-8 h-8 flex items-center justify-center font-mono font-bold text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 transition-transform group-hover:scale-95">
             MP
-          </div>
-          <div>
-            <span className="font-medium text-sm text-zinc-900 dark:text-zinc-100 tracking-tight block">
-              {profile.name}
-            </span>
           </div>
         </button>
 
@@ -135,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-3 py-1.5 text-xs font-mono transition-all relative ${
+                className={`px-3 py-1.5 text-xs sm:text-sm font-mono transition-all relative ${
                   isActive
                     ? 'text-zinc-950 dark:text-white font-medium bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800'
                     : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900/50'

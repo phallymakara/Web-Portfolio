@@ -4,18 +4,17 @@
 
 @layer base {
   * {
-    box-shadow: none !important;
     -webkit-tap-highlight-color: transparent;
   }
 
   html {
     scroll-behavior: smooth;
-    font-size: 17px;
+    font-size: 18px;
   }
 
   @media (min-width: 768px) {
     html {
-      font-size: 17.5px;
+      font-size: 18.5px;
     }
   }
 

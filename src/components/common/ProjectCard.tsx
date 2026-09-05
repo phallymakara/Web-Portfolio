@@ -15,7 +15,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <div
-      className="group relative border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col overflow-hidden"
+      className="group relative border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-400 dark:hover:border-zinc-600 hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl transition-all duration-300 ease-out flex flex-col overflow-hidden"
     >
       {/* 1. Project Image Preview with Hover Reveal Controls */}
       <div className="relative aspect-[16/9] sm:aspect-[16/8.5] w-full bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 overflow-hidden">
@@ -58,9 +58,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono font-medium bg-white text-zinc-900 hover:bg-zinc-100 shadow-md transition-transform hover:scale-105 focus:outline-none"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium bg-white text-zinc-900 hover:bg-zinc-100 shadow-md transition-transform hover:scale-105 focus:outline-none"
             >
-              <Github className="w-3 h-3" />
+              <Github className="w-3.5 h-3.5" />
               <span>{t.sections.viewSourceCode}</span>
             </a>
           )}
@@ -71,9 +71,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono font-medium border border-zinc-500 bg-zinc-900/90 text-white hover:bg-zinc-900 shadow-md transition-transform hover:scale-105 focus:outline-none"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium border border-zinc-500 bg-zinc-900/90 text-white hover:bg-zinc-900 shadow-md transition-transform hover:scale-105 focus:outline-none"
             >
-              <ExternalLink className="w-3 h-3" />
+              <ExternalLink className="w-3.5 h-3.5" />
               <span>{t.sections.liveDemo}</span>
             </a>
           )}
@@ -81,14 +81,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       {/* 2. Card Content Body */}
-      <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow space-y-2">
+      <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow space-y-2.5">
         {/* Title */}
-        <h3 className="text-sm sm:text-[15px] font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors leading-snug">
+        <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors leading-snug">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
           {project.description || project.tagline}
         </p>
       </div>

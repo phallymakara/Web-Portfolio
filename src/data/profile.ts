@@ -4,7 +4,7 @@ export const profile = {
   location: "Phnom Penh, Cambodia",
   tagline: "Designing and integrating AI solutions into real-world applications and web systems.",
   shortBio: "I am an AI Engineer with a strong foundation in machine learning, data analytics, and web development. I focus on designing and integrating AI solutions into real-world applications, developing AI-powered features and agents, and connecting them with web and backend systems to solve business problems. I am a lifelong learner who values collaboration, continuous improvement, and knowledge sharing.",
-  avatarUrl: "/images/profile.jpg",
+  avatarUrl: "/images/Makara_Phally_Hero_Image.jpg",
   email: "phallymakara01@gmail.com",
   telegram: "https://t.me/phallymakara",
   telegramHandle: "@phallymakara",

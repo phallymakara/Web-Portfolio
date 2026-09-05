@@ -97,13 +97,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             {/* Title & Introduction */}
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.15]">
                 {profile.name}
               </h1>
-              <p className="font-mono text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
+              <p className="font-mono text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-medium">
                 {t.hero.role} — {t.hero.location}
               </p>
-              <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p className="text-base sm:text-[17px] md:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 {lang === 'km' ? t.hero.bioLine1 : profile.shortBio}
               </p>
             </div>
@@ -113,10 +113,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="relative" ref={popupRef}>
                 <button
                   onClick={() => setShowContactPopup(!showContactPopup)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white transition-colors focus:outline-none"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-mono font-medium bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white transition-colors focus:outline-none"
                   aria-expanded={showContactPopup}
                 >
-                  <Mail className="w-3.5 h-3.5" />
+                  <Mail className="w-4 h-4" />
                   <span>{t.hero.getInTouch}</span>
                 </button>
 
@@ -124,7 +124,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 {showContactPopup && (
                   <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-4 shadow-2xl z-50 space-y-3.5 animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="flex items-center justify-between pb-2 hairline-b">
-                      <span className="font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
+                      <span className="font-mono text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                         {t.hero.directChannels}
                       </span>
                       <button
@@ -132,7 +132,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                         className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 p-0.5 focus:outline-none"
                         aria-label="Close popup"
                       >
-                        <X className="w-3.5 h-3.5" />
+                        <X className="w-4 h-4" />
                       </button>
                     </div>
 
@@ -145,12 +145,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                         className="flex items-center justify-between p-2.5 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 bg-zinc-50/70 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-all group"
                       >
                         <div>
-                          <span className="text-xs font-semibold block font-mono">{t.hero.telegram}</span>
-                          <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+                          <span className="text-xs sm:text-sm font-semibold block font-mono">{t.hero.telegram}</span>
+                          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
                             {profile.telegramHandle || '@phallymakara'}
                           </span>
                         </div>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors" />
+                        <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors" />
                       </a>
 
                       {/* Mail Button */}
@@ -159,21 +159,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                         className="flex items-center justify-between p-2.5 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 bg-zinc-50/70 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-all group"
                       >
                         <div>
-                          <span className="text-xs font-semibold block font-mono">{t.hero.email}</span>
-                          <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+                          <span className="text-xs sm:text-sm font-semibold block font-mono">{t.hero.email}</span>
+                          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
                             {profile.email}
                           </span>
                         </div>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors" />
+                        <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors" />
                       </a>
                     </div>
 
-                    <div className="pt-2 hairline-t flex items-center justify-between text-[11px] font-mono">
+                    <div className="pt-2 hairline-t flex items-center justify-between text-xs font-mono">
                       <button
                         onClick={handleCopyEmail}
                         className="inline-flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors focus:outline-none"
                       >
-                        {copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                        {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                         <span>{copied ? t.hero.copied : t.hero.copyEmail}</span>
                       </button>
 
@@ -197,9 +197,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   e.preventDefault();
                   alert(lang === 'km' ? 'ប្រវត្តិរូបសង្ខេប (PDF) នឹងទាញយកនៅពេលដាក់ដំណើរការជាផ្លូវការ។' : 'Curriculum Vitae (PDF) would download in a production deployment.');
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-medium border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
+                className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-mono font-medium border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
               >
-                <Download className="w-3.5 h-3.5" />
+                <Download className="w-4 h-4" />
                 <span>{t.hero.downloadCv}</span>
               </a>
             </div>
@@ -207,31 +207,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           {/* Right Column: Editorial Profile Photo (5 cols on desktop, 1st on mobile) */}
           <div className="order-1 md:order-2 md:col-span-5 lg:col-span-4 flex flex-col items-center md:items-end">
-            <div className="w-full max-w-[280px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-2">
+            <div className="group/photo w-full max-w-[280px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-2 sm:p-2.5 transition-all duration-300 ease-out hover:-translate-y-2.5 hover:scale-[1.04] hover:shadow-2xl hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-white dark:hover:bg-zinc-900/90 cursor-pointer">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-center">
                 <img
                   src={profile.avatarUrl}
                   alt={profile.name}
                   onError={(e) => {
-                    // Fallback to minimal editorial placeholder if image file not yet present
                     const target = e.currentTarget;
+                    if (target.src.includes('Makara_Phally_Hero_Image.jpg')) {
+                      target.src = '/images/profile.jpg';
+                      return;
+                    }
+                    if (target.src.includes('/images/profile.jpg')) {
+                      target.src = '/images/profile.png';
+                      return;
+                    }
+                    // Fallback to minimal editorial placeholder if image file not yet present
                     target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector('.placeholder-fallback')) {
                       const placeholder = document.createElement('div');
                       placeholder.className = 'placeholder-fallback text-center p-6 space-y-2';
                       placeholder.innerHTML = `
-                        <div class="w-16 h-16 mx-auto bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 flex items-center justify-center font-mono font-bold text-xl">
+                        <div class="w-16 h-16 mx-auto bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 flex items-center justify-center font-mono font-bold text-xl transition-transform duration-300 group-hover/photo:scale-110">
                           MP
                         </div>
-                        <div class="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
-                          public/images/profile.jpg
+                        <div class="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                          public/images/Makara_Phally_Hero_Image.jpg
                         </div>
                       `;
                       parent.appendChild(placeholder);
                     }
                   }}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                  className="w-full h-full object-cover object-top transition-all duration-500 ease-out group-hover/photo:brightness-110 group-hover/photo:scale-105"
                 />
               </div>
             </div>
@@ -287,11 +295,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     <div className="space-y-2">
                       {/* Meta header: Type & Period */}
                       <div
-                        className={`flex items-center gap-2 flex-wrap text-xs font-mono ${isEven ? 'md:justify-end' : 'md:justify-start'
+                        className={`flex items-center gap-2 flex-wrap text-xs sm:text-sm font-mono ${isEven ? 'md:justify-end' : 'md:justify-start'
                           }`}
                       >
-                        <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 inline-flex items-center gap-1">
-                          <GraduationCap className="w-3 h-3" />
+                        <span className="text-xs uppercase tracking-wider px-2.5 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 inline-flex items-center gap-1 font-medium">
+                          <GraduationCap className="w-3.5 h-3.5" />
                           <span>{originalItem?.type || 'Academic Track'}</span>
                         </span>
                         <span className="text-zinc-500 dark:text-zinc-400">
@@ -300,51 +308,51 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       </div>
 
                       {/* Institution Title */}
-                      <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
                         {item.institution}
                       </h3>
 
                       {/* Degree / Program */}
-                      <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                      <p className="text-sm sm:text-base font-medium text-zinc-800 dark:text-zinc-200">
                         {item.degree}
                       </p>
 
                       {/* Location */}
                       <p
-                        className={`text-xs font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 ${
+                        className={`text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 ${
                           isEven ? 'md:justify-end' : 'md:justify-start'
                         }`}
                       >
-                        <MapPin className="w-3 h-3 text-zinc-400 shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                         <span>{item.location}</span>
                       </p>
 
                       {/* Description / Highlights Box Container */}
                       {(item.description || item.keyAreas || originalItem?.keyAreas) && (
                         <div
-                          className={`mt-2.5 p-3.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-3 ${
+                          className={`mt-2.5 p-3.5 sm:p-4 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md ${
                             isEven ? 'md:text-right' : 'md:text-left'
                           }`}
                         >
                           {item.description && (
-                            <p className="text-sm sm:text-[14.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
                               {item.description}
                             </p>
                           )}
 
                           {(item.keyAreas || originalItem?.keyAreas) && (
                             <div className="space-y-2 pt-2 border-t border-zinc-200/70 dark:border-zinc-800/70 text-left">
-                              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold block text-left">
+                              <span className="text-xs sm:text-[13px] font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold block text-left">
                                 {item.keyAreasTitle || originalItem?.keyAreasTitle || 'Key Areas of Study'}
                               </span>
                               <ul className="space-y-1.5 text-left">
                                 {(item.keyAreas || originalItem?.keyAreas)?.map((area, aIdx) => (
                                   <li
                                     key={aIdx}
-                                    className="text-xs font-mono text-zinc-600 dark:text-zinc-300 flex items-start gap-2 text-left justify-start"
+                                    className="group/item relative text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-300 flex items-start gap-2.5 text-left justify-start px-2.5 py-1.5 -mx-2.5 rounded-sm border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900 hover:-translate-y-0.5 hover:scale-[1.02] hover:text-zinc-950 dark:hover:text-zinc-50 transition-all duration-200 ease-out cursor-default origin-left"
                                   >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1 shrink-0" />
-                                    <span>{area}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0 group-hover/item:bg-zinc-900 dark:group-hover/item:bg-zinc-100 group-hover/item:scale-125 transition-all duration-200" />
+                                    <span className="transition-colors duration-200">{area}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -384,7 +392,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         {/* 1. Verified Certifications with Image Placeholders (First) */}
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
-            <span className="font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-2">
+            <span className="font-mono text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-2">
               <span>{t.sections.certificationsHeading}</span>
             </span>
 
@@ -396,7 +404,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <button
                     key={cat.id}
                     onClick={() => setActiveCertCategory(cat.id as any)}
-                    className={`px-3 py-1 text-xs font-mono transition-all border ${
+                    className={`px-3.5 py-1.5 text-xs sm:text-sm font-mono transition-all border ${
                       isActive
                         ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100 font-medium'
                         : 'bg-zinc-50/80 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100'
@@ -413,7 +421,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {filteredCertificates.map((cert) => (
               <div
                 key={cert.id}
-                className="group border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col overflow-hidden"
+                className="group border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-400 dark:hover:border-zinc-600 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-lg transition-all duration-300 ease-out flex flex-col overflow-hidden"
               >
                 {/* Certificate Image or Styled Placeholder Frame */}
                 <div className="relative aspect-[16/10] w-full bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 overflow-hidden flex items-center justify-center p-3">
@@ -429,10 +437,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       <div className="w-7 h-7 rounded-full bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center mb-1.5 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform">
                         <Award className="w-3.5 h-3.5" />
                       </div>
-                      <span className="text-[10px] font-mono font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider block line-clamp-1">
+                      <span className="text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider block line-clamp-1">
                         {cert.title}
                       </span>
-                      <span className="text-[9px] font-mono text-zinc-400 dark:text-zinc-500 mt-0.5">
+                      <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mt-0.5">
                         {t.sections.certificatePreview}
                       </span>
                     </div>
@@ -441,7 +449,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
                 {/* Certificate Title */}
                 <div className="p-3.5">
-                  <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors leading-snug">
+                  <h4 className="text-sm sm:text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors leading-snug">
                     {cert.title}
                   </h4>
                 </div>
@@ -454,7 +462,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="space-y-6 pt-2">
           {/* Header & Filter Tabs */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3">
-            <span className="font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-2">
+            <span className="font-mono text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-2">
               <span>{t.sections.skillStackHeading}</span>
             </span>
 
@@ -466,7 +474,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <button
                     key={cat.id}
                     onClick={() => setActiveStackCategory(cat.id as any)}
-                    className={`px-3 py-1 text-xs font-mono transition-all border ${
+                    className={`px-3.5 py-1.5 text-xs sm:text-sm font-mono transition-all border ${
                       isActive
                         ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100 font-medium'
                         : 'bg-zinc-50/80 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100'
@@ -484,11 +492,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {filteredSkills.map((skill) => (
               <div
                 key={skill.name}
-                className="group relative p-3.5 sm:p-4 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-900 dark:hover:border-zinc-100 transition-all duration-200 flex flex-col justify-between overflow-hidden hover:-translate-y-0.5 hover:shadow-sm"
+                className="group relative p-3.5 sm:p-4 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-900 dark:hover:border-zinc-100 hover:-translate-y-1 hover:scale-[1.03] hover:shadow-lg transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden"
               >
                 {/* Top: Category Tag */}
                 <div className="flex items-center justify-between gap-1 mb-3">
-                  <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-900/80 text-zinc-500 dark:text-zinc-400 group-hover:border-zinc-300 dark:group-hover:border-zinc-700 transition-colors">
+                  <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-300 font-medium group-hover:border-zinc-300 dark:group-hover:border-zinc-700 transition-colors">
                     {skill.categoryLabel}
                   </span>
                   <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700 group-hover:bg-zinc-900 dark:group-hover:bg-zinc-100 transition-colors shrink-0" />
@@ -518,7 +526,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
                 {/* Bottom: Skill Name */}
                 <div className="mt-3 pt-2 hairline-t text-center">
-                  <span className="text-xs sm:text-sm font-semibold font-mono text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors block truncate">
+                  <span className="text-sm sm:text-[15px] font-semibold font-mono text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors block truncate">
                     {skill.name}
                   </span>
                 </div>
@@ -575,12 +583,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     <div className="space-y-2">
                       {/* Meta header: Company & Period */}
                       <div
-                        className={`flex items-center gap-2 flex-wrap text-xs font-mono ${
+                        className={`flex items-center gap-2 flex-wrap text-xs sm:text-sm font-mono ${
                           isEven ? 'md:justify-end' : 'md:justify-start'
                         }`}
                       >
-                        <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 inline-flex items-center gap-1">
-                          <Briefcase className="w-3 h-3" />
+                        <span className="text-xs uppercase tracking-wider px-2.5 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 inline-flex items-center gap-1 font-medium">
+                          <Briefcase className="w-3.5 h-3.5" />
                           <span>{item.company}</span>
                         </span>
                         <span className="text-zinc-500 dark:text-zinc-400">
@@ -589,40 +597,40 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       </div>
 
                       {/* Role Title */}
-                      <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
                         {item.role}
                       </h3>
 
                       {/* Location */}
                       <p
-                        className={`text-xs font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 ${
+                        className={`text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 ${
                           isEven ? 'md:justify-end' : 'md:justify-start'
                         }`}
                       >
-                        <MapPin className="w-3 h-3 text-zinc-400 shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                         <span>{item.location}</span>
                       </p>
 
                       {/* Description Container */}
                       {item.description && (
                         <div
-                          className={`mt-2.5 p-3.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-2.5 ${
+                          className={`mt-2.5 p-3.5 sm:p-4 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40 space-y-2.5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md ${
                             isEven ? 'md:text-right' : 'md:text-left'
                           }`}
                         >
-                          <p className="text-sm sm:text-[14.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
                             {item.description}
                           </p>
 
                           {item.highlights && item.highlights.length > 0 && (
-                            <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 pt-1 text-left">
+                            <ul className="space-y-1.5 text-xs sm:text-sm md:text-[14.5px] text-zinc-600 dark:text-zinc-400 pt-1 text-left">
                               {item.highlights.map((highlight, hIdx) => (
                                 <li
                                   key={hIdx}
-                                  className="flex items-start gap-2 text-left justify-start"
+                                  className="group/item relative flex items-start gap-2.5 text-left justify-start px-2.5 py-1.5 -mx-2.5 rounded-sm border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900 hover:-translate-y-0.5 hover:scale-[1.02] hover:text-zinc-950 dark:hover:text-zinc-50 transition-all duration-200 ease-out cursor-default origin-left"
                                 >
-                                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0" />
-                                  <span>{highlight}</span>
+                                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0 group-hover/item:bg-zinc-900 dark:group-hover/item:bg-zinc-100 group-hover/item:scale-125 transition-all duration-200" />
+                                  <span className="transition-colors duration-200">{highlight}</span>
                                 </li>
                               ))}
                             </ul>
@@ -657,7 +665,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <button
                 key={cat.id}
                 onClick={() => setActiveProjectCategory(cat.id as any)}
-                className={`px-3 py-1 text-xs font-mono transition-all border ${
+                className={`px-3.5 py-1.5 text-xs sm:text-sm font-mono transition-all border ${
                   isActive
                     ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100 font-medium'
                     : 'bg-zinc-50/80 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100'

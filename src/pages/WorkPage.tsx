@@ -34,38 +34,41 @@ export const WorkPage: React.FC = () => {
           {experience.map((item, idx) => (
             <div
               key={idx}
-              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 space-y-4"
+              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 space-y-4 hover:-translate-y-1 hover:scale-[1.01] hover:border-zinc-400 dark:hover:border-zinc-600 hover:shadow-lg transition-all duration-300 ease-out"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                 <div>
-                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
                     {item.role}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm font-mono text-zinc-600 dark:text-zinc-300 mt-0.5">
+                  <div className="flex items-center gap-2 text-sm sm:text-base font-mono text-zinc-600 dark:text-zinc-300 mt-0.5">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">{item.company}</span>
                     <span>•</span>
                     <span>{item.location}</span>
                   </div>
                 </div>
 
-                <span className="font-mono text-xs px-2.5 py-1 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 self-start">
+                <span className="font-mono text-xs sm:text-sm px-2.5 py-1 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 self-start">
                   {item.period}
                 </span>
               </div>
 
-              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 {item.description}
               </p>
 
               <div className="space-y-2 pt-2 text-left">
-                <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
+                <span className="font-mono text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
                   Key Accomplishments:
                 </span>
-                <ul className="space-y-1.5 text-sm text-zinc-600 dark:text-zinc-400 text-left">
+                <ul className="space-y-1.5 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 text-left">
                   {item.highlights.map((highlight, hIdx) => (
-                    <li key={hIdx} className="flex items-start gap-2 justify-start text-left">
-                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0" />
-                      <span>{highlight}</span>
+                    <li
+                      key={hIdx}
+                      className="group/item relative flex items-start gap-2.5 justify-start text-left px-2.5 py-1.5 -mx-2.5 rounded-sm border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:-translate-y-0.5 hover:scale-[1.02] hover:text-zinc-950 dark:hover:text-zinc-50 transition-all duration-200 ease-out cursor-default origin-left"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0 group-hover/item:bg-zinc-900 dark:group-hover/item:bg-zinc-100 group-hover/item:scale-125 transition-all duration-200" />
+                      <span className="transition-colors duration-200">{highlight}</span>
                     </li>
                   ))}
                 </ul>
@@ -88,50 +91,50 @@ export const WorkPage: React.FC = () => {
           {education.map((item, idx) => (
             <div
               key={idx}
-              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 space-y-4"
+              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 space-y-4 hover:-translate-y-1 hover:scale-[1.01] hover:border-zinc-400 dark:hover:border-zinc-600 hover:shadow-lg transition-all duration-300 ease-out"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                 <div>
                   {item.type && (
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 inline-block mb-1.5">
+                    <span className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 inline-block mb-1.5 font-medium">
                       {item.type}
                     </span>
                   )}
-                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
                     {item.institution}
                   </h3>
-                  <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-1">
+                  <p className="text-sm sm:text-base font-medium text-zinc-700 dark:text-zinc-300 mt-1">
                     {item.degree}
                   </p>
-                  <p className="text-xs font-mono text-zinc-600 dark:text-zinc-300 mt-0.5">
+                  <p className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-300 mt-0.5">
                     {item.location}
                   </p>
                 </div>
 
-                <span className="font-mono text-xs px-2.5 py-1 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 self-start">
+                <span className="font-mono text-xs sm:text-sm px-2.5 py-1 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 self-start">
                   {item.period}
                 </span>
               </div>
 
               {item.honors && (
-                <div className="p-3 bg-zinc-50 dark:bg-zinc-900/60 border-l-2 border-zinc-900 dark:border-zinc-100 text-xs font-mono text-zinc-800 dark:text-zinc-200">
+                <div className="p-3 bg-zinc-50 dark:bg-zinc-900/60 border-l-2 border-zinc-900 dark:border-zinc-100 text-xs sm:text-sm font-mono text-zinc-800 dark:text-zinc-200">
                   {item.honors}
                 </div>
               )}
 
               {item.keyAreas && (
                 <div className="space-y-2 pt-2 text-left">
-                  <span className="font-mono text-xs text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
+                  <span className="font-mono text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 uppercase block font-semibold">
                     {item.keyAreasTitle || 'Key Areas of Study'}:
                   </span>
                   <ul className="space-y-1.5 text-left">
                     {item.keyAreas.map((area, aIdx) => (
                       <li
                         key={aIdx}
-                        className="text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-start gap-2 justify-start"
+                        className="group/item relative text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 flex items-start gap-2.5 justify-start px-2.5 py-1.5 -mx-2.5 rounded-sm border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:-translate-y-0.5 hover:scale-[1.02] hover:text-zinc-950 dark:hover:text-zinc-50 transition-all duration-200 ease-out cursor-default origin-left"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1 shrink-0" />
-                        <span>{area}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0 group-hover/item:bg-zinc-900 dark:group-hover/item:bg-zinc-100 group-hover/item:scale-125 transition-all duration-200" />
+                        <span className="transition-colors duration-200">{area}</span>
                       </li>
                     ))}
                   </ul>

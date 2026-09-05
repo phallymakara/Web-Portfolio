@@ -13,23 +13,23 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Bio */}
           <div className="space-y-3 max-w-sm">
-            <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 block">
+            <span className="font-semibold text-base text-zinc-900 dark:text-zinc-100 block">
               {profile.name}
             </span>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               {lang === 'km' ? t.hero.bioLine1 : profile.tagline}
             </p>
-            <p className="text-xs font-mono text-zinc-600 dark:text-zinc-300">
+            <p className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-300">
               {lang === 'km' ? t.hero.location : profile.location}
             </p>
           </div>
 
           {/* Col 2: Network (Two columns) */}
           <div className="space-y-3">
-            <span className="text-xs font-mono text-zinc-600 dark:text-zinc-300 uppercase tracking-wider block">
+            <span className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-300 uppercase tracking-wider block font-medium">
               {t.footer.network}
             </span>
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm font-mono">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm sm:text-base font-mono">
               <li>
                 <a
                   href={profile.github}
@@ -37,9 +37,9 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 >
-                  <Github className="w-3.5 h-3.5" />
+                  <Github className="w-4 h-4" />
                   <span>GitHub</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
               <li>
@@ -49,9 +49,9 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 >
-                  <Linkedin className="w-3.5 h-3.5" />
+                  <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
               <li>
@@ -61,9 +61,9 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 >
-                  <Twitter className="w-3.5 h-3.5" />
+                  <Twitter className="w-4 h-4" />
                   <span>Twitter / X</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
               <li>
@@ -71,9 +71,9 @@ export const Footer: React.FC = () => {
                   href={`mailto:${profile.email}`}
                   className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5" />
+                  <Mail className="w-4 h-4" />
                   <span>Email</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 hairline-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 dark:text-zinc-300">
+        <div className="pt-8 hairline-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-300">
           <div>
             © {new Date().getFullYear()} {profile.name}. {t.footer.rights}
           </div>
