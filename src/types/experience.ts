@@ -34,7 +34,10 @@ export interface CertificateItem {
   issuer: string;
   issueDate: string;
   credentialUrl?: string;
+  fileUrl?: string;
+  fileUrlDark?: string;
   imageUrl?: string;
+  imageUrlDark?: string;
   skills: string[];
   type?: string;
   description?: string;

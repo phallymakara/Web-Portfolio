@@ -23,6 +23,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <img
             src={project.imageUrl}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           />
         ) : (

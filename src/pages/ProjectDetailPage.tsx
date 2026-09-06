@@ -76,6 +76,19 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ slug, onBa
         </div>
       </div>
 
+      {/* Featured Project Visual Screenshot Preview */}
+      {project.imageUrl && (
+        <div className="w-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 overflow-hidden shadow-md">
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-auto object-contain max-h-[520px] mx-auto"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+
       {/* ─────────────────────────────────────────────────────────────
           1. RESULTS SUMMARY CALLOUT
       ────────────────────────────────────────────────────────────── */}

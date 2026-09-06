@@ -1,4 +1,4 @@
-export type ProjectCategory = 'ai-ml' | 'ai-agents' | 'backend' | 'full-stack';
+export type ProjectCategory = 'ai-ml' | 'ai-agents' | 'backend' | 'full-stack' | 'bi-solution';
 
 export interface ProjectDetailSection {
   problem: string;

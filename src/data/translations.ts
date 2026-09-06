@@ -74,6 +74,7 @@ export interface Translations {
     projectFilterAiMl: string;
     projectFilterBackend: string;
     projectFilterFullStack: string;
+    projectFilterBiSolution: string;
 
     aboutNumber: string;
     aboutTitle: string;
@@ -197,6 +198,7 @@ export const translations: Record<Language, Translations> = {
       projectFilterAiMl: 'AI & ML',
       projectFilterBackend: 'Backend',
       projectFilterFullStack: 'Full-Stack',
+      projectFilterBiSolution: 'BI Solution',
 
       aboutNumber: '05 // SHORT ABOUT',
       aboutTitle: 'Engineering Philosophy & Trajectory',
@@ -405,6 +407,7 @@ export const translations: Record<Language, Translations> = {
       projectFilterAiMl: 'AI & ML',
       projectFilterBackend: 'Backend',
       projectFilterFullStack: 'Full-Stack',
+      projectFilterBiSolution: 'BI Solution',
 
       aboutNumber: '០៥ // ទស្សនវិជ្ជាវិស្វកម្ម',
       aboutTitle: 'ទស្សនវិជ្ជាវិស្វកម្ម និងគោលការណ៍ស្នូល',

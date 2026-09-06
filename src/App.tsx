@@ -96,7 +96,7 @@ export function App() {
       <main className="flex-1 w-full">
         <Container className="py-8 sm:py-12">
           {activeView === 'home' && (
-            <HomePage onNavigate={handleNavigate} />
+            <HomePage onNavigate={handleNavigate} theme={theme} />
           )}
 
           {activeView === 'about' && (

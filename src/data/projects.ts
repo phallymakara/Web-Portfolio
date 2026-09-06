@@ -261,5 +261,101 @@ export const projects: Project[] = [
         { metric: "15s", label: "Average turnaround time for multi-file refactoring tasks" }
       ]
     }
+  },
+  {
+    slug: "bank-loan-analysis-report",
+    title: "Bank Loan Analysis & Financial Risk Report",
+    tagline: "Comprehensive financial analytics dashboard tracking $435.8M in loan applications, funding volumes, good vs. bad loan distributions, and borrower debt ratios.",
+    description: "Interactive Power BI financial reporting platform monitoring 38.6K loan applications, repayment statuses, interest rate yields, and DTI metrics across credit grades.",
+    category: "bi-solution",
+    categoryLabel: "BI Solution",
+    year: "2025",
+    featured: true,
+    imageUrl: "/project/loan_analyst.png",
+    liveUrl: "https://app.powerbi.com/groups/me/reports/f426e78c-bdc2-4a93-9808-9277143a088a/f4b852345109fe12944c?experience=power-bi",
+    tags: ["Power BI", "Financial Analytics", "DAX", "Risk Modeling", "Banking KPI", "ETL"],
+    details: {
+      problem: "Financial institutions need clear visibility into credit risk, default probability, and capital distribution across states, credit grades, and loan purposes without manual ledger consolidation.",
+      solution: "Designed and deployed an executive Power BI risk and portfolio dashboard segmenting 38,576 loans into actionable Good vs. Bad loan KPIs, MTD/MOM growth metrics, and debt-to-income distributions.",
+      architecture: {
+        overview: "Banking data ingestion pipeline: Transactional Loan DB -> Automated Data Cleansing -> Credit Risk Classification Model -> Dynamic Power BI Dashboard.",
+        components: [
+          "Credit Ingestion Pipeline: Ingests 38.6K application records with automated schema validation.",
+          "Good vs. Bad Loan Segregation Engine: Classifies loans by performance (Fully Paid / Current vs. Charged Off).",
+          "DAX Financial Metrics: Calculates MTD and MOM totals for funded amounts, interest rate averages, and DTI ratios.",
+          "Risk Scorecard Visuals: Interactive donut charts, status breakdown matrices, and multi-parameter filters (State, Grade, Purpose)."
+        ],
+        diagramNote: "Loan Records -> Data Modeling & ETL -> Good/Bad Loan Classifier -> DAX Measures -> Executive Dashboard"
+      },
+      technologies: [
+        "Microsoft Power BI Desktop & Service",
+        "DAX (Financial & Time-Intelligence Measures)",
+        "Power Query ETL",
+        "Credit Risk Data Modeling",
+        "SQL Database Connectivity"
+      ],
+      implementation: [
+        "Calculated vital credit health indicators including 86.2% Good Loan issuance ($370.2M funded) vs. 13.8% Bad Loans ($65.53M).",
+        "Implemented interactive dimensional slicers by State Address, Credit Grade (A through G), and Loan Purpose.",
+        "Engineered summary, overview, and granular account-level drill-through pages for audit review."
+      ],
+      challenges: [
+        "Reconciling charged-off loan recovery streams with historical write-down ledger entries.",
+        "Formulating efficient DAX measures for dynamic debt-to-income (DTI) and interest rate aggregations."
+      ],
+      results: [
+        { metric: "$473.1M", label: "Total loan repayment amount received tracked in real-time" },
+        { metric: "86.2%", label: "Good loan portfolio ratio accurately classified" },
+        { metric: "38.6K", label: "Total loan applications visualized with sub-second cross-filtering" }
+      ]
+    }
+  },
+  {
+    slug: "pizza-sales-performance-analytics",
+    title: "Pizza Sales & Revenue Intelligence Dashboard",
+    tagline: "Operational sales performance and customer ordering intelligence dashboard analyzing $681.31K in revenue across 41,282 pizzas sold.",
+    description: "End-to-end retail business intelligence report built in Power BI, analyzing hourly/daily order trends, product category contributions, pizza size preferences, and best/worst seller rankings.",
+    category: "bi-solution",
+    categoryLabel: "BI Solution",
+    year: "2025",
+    featured: true,
+    imageUrl: "/project/pizza_analyst.png",
+    liveUrl: "https://app.powerbi.com/groups/me/reports/69480826-d706-4e8f-a69b-28c437a9d7ea/83583d849c8f4e072f0c?experience=power-bi",
+    tags: ["Power BI", "Sales Intelligence", "DAX", "Trend Analysis", "Retail Analytics", "Power Query"],
+    details: {
+      problem: "Restaurant management lacked centralized operational insights into peak ordering hours, high-margin category contributions, and stock requirements, resulting in staffing bottlenecks on weekends.",
+      solution: "Engineered an interactive sales intelligence dashboard identifying Friday/Saturday evening volume surges (peak 2,927 orders), category breakdowns (Classic leading at 26.96%), and size preference distribution.",
+      architecture: {
+        overview: "Retail POS ingestion architecture: Point-of-Sale Transaction Log -> Order Item Normalization -> Sales Fact & Dimension Model -> Interactive Power BI Visuals.",
+        components: [
+          "POS Ingestion Layer: Cleanses and transforms 17,771 order line items spanning 15/Jan to 15/Dec.",
+          "Temporal Trend Analyzer: Aggregates daily orders and monthly seasonality curves (peak in July: 1,935 orders).",
+          "Product Mix Engine: Analyzes category percentage shares (Classic, Supreme, Chicken, Veggie) and size distribution.",
+          "Executive Dashboard: Clean high-contrast UI with dynamic category slicers, date range sliders, and navigation panels."
+        ],
+        diagramNote: "POS Database -> Power Query Transformation -> Star Schema Sales Model -> DAX Metrics -> Executive Sales Dashboard"
+      },
+      technologies: [
+        "Microsoft Power BI Service & Desktop",
+        "DAX (Average Order Value, Slicing Percentages, Time Trends)",
+        "Power Query ETL",
+        "Data Modeling & Normalization",
+        "Interactive UI/UX Design"
+      ],
+      implementation: [
+        "Formulated key performance metrics: $681.31K Total Revenue, $38.34 Average Order Value, 41,282 Total Pizzas Sold.",
+        "Constructed hourly and weekly surge models proving orders peak on Friday/Saturday evenings.",
+        "Integrated best-seller and underperformer ranking sections to guide menu optimization and inventory purchase."
+      ],
+      challenges: [
+        "Calculating accurate percentage share of sales across dynamic date and category filter selections in DAX.",
+        "Designing an accessible, high-contrast operational layout that provides quick glanceability during kitchen rush hours."
+      ],
+      results: [
+        { metric: "$681.3K", label: "Total revenue analyzed with full transaction auditability" },
+        { metric: "45.8%", label: "Large size pizza share pinpointed as primary revenue driver" },
+        { metric: "17.7K+", label: "Individual orders mapped across daily and monthly trend lines" }
+      ]
+    }
   }
 ];

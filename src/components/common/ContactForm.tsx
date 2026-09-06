@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Mail } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { sendContactMessage } from '../../services/contactService';
 
 interface FormState {
   name: string;
@@ -26,6 +27,7 @@ export const ContactForm: React.FC = () => {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | undefined>();
 
   const validateField = (field: keyof FormState, value: string): string | undefined => {
     switch (field) {
@@ -72,7 +74,7 @@ export const ContactForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Mark all as touched
@@ -95,15 +97,28 @@ export const ContactForm: React.FC = () => {
     }
 
     setIsSubmitting(true);
+    setSubmissionError(undefined);
 
-    // Simulate clean dispatch
-    setTimeout(() => {
+    try {
+      const result = await sendContactMessage({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTouched({});
+        setErrors({});
+      } else {
+        setSubmissionError(result.error || 'Failed to dispatch message. Please try sending via direct email.');
+      }
+    } catch (err: any) {
+      setSubmissionError(err.message || 'An unexpected error occurred. Please try sending via direct email.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTouched({});
-      setErrors({});
-    }, 800);
+    }
   };
 
   return (
@@ -124,6 +139,22 @@ export const ContactForm: React.FC = () => {
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="space-y-5">
+          {submissionError && (
+            <div className="p-4 border border-rose-200 dark:border-rose-900/60 bg-rose-50/70 dark:bg-rose-950/40 rounded text-xs font-mono text-rose-700 dark:text-rose-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
+                <span>{submissionError}</span>
+              </div>
+              <a
+                href={`mailto:phallymakara01@gmail.com?subject=${encodeURIComponent('Portfolio Contact from ' + formData.name)}&body=${encodeURIComponent(formData.message)}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-medium w-fit transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Send Direct Email</span>
+              </a>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             
             {/* Name Input */}

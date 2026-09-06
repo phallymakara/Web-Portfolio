@@ -15,6 +15,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) =
     { id: 'ai-ml', label: 'AI / ML', count: projects.filter(p => p.category === 'ai-ml').length },
     { id: 'backend', label: 'Backend', count: projects.filter(p => p.category === 'backend').length },
     { id: 'full-stack', label: 'Full-Stack', count: projects.filter(p => p.category === 'full-stack').length },
+    { id: 'bi-solution', label: 'BI Solution', count: projects.filter(p => p.category === 'bi-solution').length },
   ];
 
   const filteredProjects = selectedCategory === 'all'

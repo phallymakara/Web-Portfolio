@@ -1,26 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, Mail, ArrowRight, ArrowUpRight, MapPin, GraduationCap, Briefcase, Award, Copy, Check, X } from 'lucide-react';
+import { Download, Mail, ArrowRight, ArrowUpRight, MapPin, GraduationCap, Briefcase, Copy, Check, X } from 'lucide-react';
 import { profile } from '../data/profile';
 import { experience, education, certificates } from '../data/experience';
+import { CertificateItem } from '../types/experience';
 import { projects } from '../data/projects';
 import { skillStackItems } from '../data/stack';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { ProjectCard } from '../components/common/ProjectCard';
 import { ContactForm } from '../components/common/ContactForm';
+import { LazyCertificateCard } from '../components/common/LazyCertificateCard';
+import { CertificateModal } from '../components/common/CertificateModal';
 import { NavItem } from '../components/layout/Header';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../hooks/useTheme';
 
 interface HomePageProps {
   onNavigate: (tab: NavItem, slug?: string) => void;
+  theme?: 'dark' | 'light';
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate, theme: propTheme }) => {
   const { lang, t } = useLanguage();
+  const { theme: hookTheme } = useTheme();
+  const activeTheme = propTheme || hookTheme || 'dark';
+
   const [showContactPopup, setShowContactPopup] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
   const [activeCertCategory, setActiveCertCategory] = useState<'all' | 'ai-ml' | 'web' | 'data' | 'design'>('all');
   const [activeStackCategory, setActiveStackCategory] = useState<'ai-ml' | 'languages' | 'databases' | 'tools'>('ai-ml');
-  const [activeProjectCategory, setActiveProjectCategory] = useState<'all' | 'ai-agents' | 'ai-ml' | 'backend' | 'full-stack'>('all');
+  const [activeProjectCategory, setActiveProjectCategory] = useState<'all' | 'ai-agents' | 'ai-ml' | 'backend' | 'full-stack' | 'bi-solution'>('all');
   const popupRef = useRef<HTMLDivElement>(null);
 
   const certCategories = [
@@ -49,6 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     { id: 'ai-ml', label: t.sections.projectFilterAiMl },
     { id: 'backend', label: t.sections.projectFilterBackend },
     { id: 'full-stack', label: t.sections.projectFilterFullStack },
+    { id: 'bi-solution', label: t.sections.projectFilterBiSolution },
   ];
 
   const filteredProjects = activeProjectCategory === 'all'
@@ -212,14 +222,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <img
                   src={profile.avatarUrl}
                   alt={profile.name}
+                  fetchPriority="high"
+                  decoding="async"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src.includes('Makara_Phally_Hero_Image.jpg')) {
+                    if (target.src.includes('profile.jpeg')) {
                       target.src = '/images/profile.jpg';
                       return;
                     }
-                    if (target.src.includes('/images/profile.jpg')) {
+                    if (target.src.includes('profile.jpg')) {
                       target.src = '/images/profile.png';
+                      return;
+                    }
+                    if (target.src.includes('profile.png')) {
+                      target.src = '/images/profile.webp';
                       return;
                     }
                     // Fallback to minimal editorial placeholder if image file not yet present
@@ -233,7 +249,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                           MP
                         </div>
                         <div class="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                          public/images/Makara_Phally_Hero_Image.jpg
+                          public/images/profile.jpeg
                         </div>
                       `;
                       parent.appendChild(placeholder);
@@ -417,43 +433,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredCertificates.map((cert) => (
-              <div
+              <LazyCertificateCard
                 key={cert.id}
-                className="group border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-400 dark:hover:border-zinc-600 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-lg transition-all duration-300 ease-out flex flex-col overflow-hidden"
-              >
-                {/* Certificate Image or Styled Placeholder Frame */}
-                <div className="relative aspect-[16/10] w-full bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 overflow-hidden flex items-center justify-center p-3">
-                  {cert.imageUrl ? (
-                    <img
-                      src={cert.imageUrl}
-                      alt={cert.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    /* Editorial Certificate Placeholder Frame */
-                    <div className="w-full h-full border border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-950/60 flex flex-col items-center justify-center p-2.5 text-center transition-colors group-hover:border-zinc-400 dark:group-hover:border-zinc-500">
-                      <div className="w-7 h-7 rounded-full bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center mb-1.5 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform">
-                        <Award className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider block line-clamp-1">
-                        {cert.title}
-                      </span>
-                      <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mt-0.5">
-                        {t.sections.certificatePreview}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Certificate Title */}
-                <div className="p-3.5">
-                  <h4 className="text-sm sm:text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors leading-snug">
-                    {cert.title}
-                  </h4>
-                </div>
-              </div>
+                cert={cert}
+                theme={activeTheme}
+                onSelect={(c) => setSelectedCert(c)}
+                previewLabel={t.sections.certificatePreview}
+              />
             ))}
           </div>
         </div>
@@ -703,6 +691,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <ContactForm />
         </div>
       </section>
+
+      {/* Interactive Certificate Inspector & Full PDF Viewer Modal */}
+      <CertificateModal
+        cert={selectedCert}
+        theme={activeTheme}
+        onClose={() => setSelectedCert(null)}
+      />
 
     </div>
   );

@@ -1,4 +1,4 @@
-import { ExperienceItem, EducationItem, AchievementItem, CertificateItem } from '../types/experience';
+import { ExperienceItem, EducationItem, AchievementItem } from '../types/experience';
 
 export const experience: ExperienceItem[] = [
   {
@@ -131,49 +131,5 @@ export const achievements: AchievementItem[] = [
   }
 ];
 
-export const certificates: CertificateItem[] = [
-  {
-    id: "cert-frontend-master",
-    title: "Web Development (Short Course)",
-    issuer: "Frontend Master",
-    issueDate: "Nov 2025 — Jan 2026",
-    type: "Online Certification",
-    category: "web",
-    imageUrl: "", // Paste your certificate image path here (e.g., "/images/certificates/web-dev.png")
-    skills: ["JavaScript", "HTML5", "CSS3", "Frontend Architecture", "Web APIs"],
-    description: "In-depth modern web development, responsive application architecture, client-side rendering, and API integration."
-  },
-  {
-    id: "cert-dtc-graphic-design",
-    title: "Graphic Design (Short Course)",
-    issuer: "DTC Center",
-    issueDate: "Nov 2022 — Apr 2023",
-    type: "Professional Certification",
-    category: "design",
-    imageUrl: "", // Paste your certificate image path here (e.g., "/images/certificates/graphic-design.png")
-    skills: ["Adobe Photoshop", "Adobe Illustrator", "Visual Branding", "UI Assets"],
-    description: "Professional digital design, vector branding assets, typography, and marketing collateral production."
-  },
-  {
-    id: "cert-ai-ml-specialization",
-    title: "Machine Learning & AI Engineering",
-    issuer: "Research and Data Analytics Lab (ReDA Lab)",
-    issueDate: "July 2025 — Oct 2025",
-    type: "Applied Research & Internship",
-    category: "ai-ml",
-    imageUrl: "", // Paste your certificate image path here (e.g., "/images/certificates/ai-ml.png")
-    skills: ["Python", "PyTorch", "Scikit-Learn", "OpenCV", "Pandas", "NumPy"],
-    description: "Hands-on machine learning model training, computer vision pipelines, feature engineering, and neural network tuning."
-  },
-  {
-    id: "cert-data-analytics-bi",
-    title: "Data Analytics & Business Intelligence",
-    issuer: "Data Analytics Foundation",
-    issueDate: "2024 — 2025",
-    type: "Technical Specialization",
-    category: "data",
-    imageUrl: "", // Paste your certificate image path here (e.g., "/images/certificates/data-analytics.png")
-    skills: ["SQL", "Power BI", "Tableau", "PostgreSQL", "Data Modeling"],
-    description: "End-to-end relational data extraction, SQL optimization, KPI calculation scripts, and interactive executive reporting."
-  }
-];
+export { certificates } from './certificates';
+
