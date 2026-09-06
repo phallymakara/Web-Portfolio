@@ -1,9 +1,11 @@
 /**
  * Contact Dispatch Service
- * Delivers contact form submissions to:
- * 1. Email (via Web3Forms API - free, direct to phallymakara01@gmail.com)
- * 2. Telegram (via Telegram Bot API - instant notification to phone)
+ * Implements resilient multi-layer architecture:
+ * 1. Primary: Secure Serverless API (/api/contact) - Protects secrets server-side.
+ * 2. Secondary Fallback: Direct Client-Side Dispatch (Web3Forms & Telegram) for static hosting.
  */
+
+import { env } from '../config/env';
 
 export interface ContactPayload {
   name: string;
@@ -19,20 +21,44 @@ export interface ContactDispatchResult {
 }
 
 export async function sendContactMessage(payload: ContactPayload): Promise<ContactDispatchResult> {
-  const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-  const telegramBotToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-  const telegramChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+  // Layer 1: Attempt Serverless Proxy (/api/contact)
+  try {
+    const serverlessRes = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
+    // If serverless endpoint is deployed and active
+    if (serverlessRes.status !== 404) {
+      const data = await serverlessRes.json();
+      if (serverlessRes.ok && data.success) {
+        return {
+          success: true,
+          emailSent: Boolean(data.emailSent),
+          telegramSent: Boolean(data.telegramSent),
+        };
+      }
+      if (!serverlessRes.ok && data.error) {
+        // Continue to fallback if serverless failed
+        console.warn('[Contact Service] Serverless endpoint error, trying direct fallback:', data.error);
+      }
+    }
+  } catch {
+    // Serverless endpoint not present (static host like GitHub Pages) - proceed to client fallback
+  }
+
+  // Layer 2: Client-side Direct Dispatch
+  const errors: string[] = [];
   let emailSent = false;
   let telegramSent = false;
-  const errors: string[] = [];
 
-  // Task 1: Web3Forms Email Dispatch
+  // 2A. Web3Forms Dispatch
   const emailPromise = (async () => {
-    if (!web3FormsKey) {
-      console.warn(
-        '[Contact Service] VITE_WEB3FORMS_ACCESS_KEY is not set. Get a free key at https://web3forms.com'
-      );
+    if (!env.web3FormsAccessKey) {
       return false;
     }
 
@@ -44,7 +70,7 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Conta
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: web3FormsKey,
+          access_key: env.web3FormsAccessKey,
           name: payload.name,
           email: payload.email,
           message: payload.message,
@@ -57,21 +83,18 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Conta
       if (res.ok && data.success) {
         return true;
       } else {
-        errors.push(data.message || 'Web3Forms dispatch failed');
+        errors.push(data.message || 'Web3Forms error');
         return false;
       }
     } catch (err: any) {
-      errors.push(`Email service error: ${err.message || err}`);
+      errors.push(`Email error: ${err.message || err}`);
       return false;
     }
   })();
 
-  // Task 2: Telegram Bot Dispatch
+  // 2B. Direct Telegram Dispatch
   const telegramPromise = (async () => {
-    if (!telegramBotToken || !telegramChatId) {
-      console.warn(
-        '[Contact Service] Telegram keys not set. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID.'
-      );
+    if (!env.telegramBotToken || !env.telegramChatId) {
       return false;
     }
 
@@ -87,11 +110,11 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Conta
         `💬 *Message:*\n${sanitizedMessage}\n\n` +
         `🌐 *Source:* Web Portfolio`;
 
-      const res = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+      const res = await fetch(`https://api.telegram.org/bot${env.telegramBotToken}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_id: telegramChatId,
+          chat_id: env.telegramChatId,
           text: telegramText,
           parse_mode: 'MarkdownV2',
         }),
@@ -101,16 +124,15 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Conta
       if (res.ok && data.ok) {
         return true;
       } else {
-        errors.push(data.description || 'Telegram dispatch failed');
+        errors.push(data.description || 'Telegram error');
         return false;
       }
     } catch (err: any) {
-      errors.push(`Telegram service error: ${err.message || err}`);
+      errors.push(`Telegram error: ${err.message || err}`);
       return false;
     }
   })();
 
-  // Execute both concurrently
   const [emailResult, telegramResult] = await Promise.allSettled([emailPromise, telegramPromise]);
 
   if (emailResult.status === 'fulfilled' && emailResult.value) {
@@ -120,9 +142,9 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Conta
     telegramSent = true;
   }
 
-  // If no API keys were configured in development mode, simulate a successful delivery
-  const hasAnyKey = Boolean(web3FormsKey || (telegramBotToken && telegramChatId));
-  const success = hasAnyKey ? emailSent || telegramSent : true;
+  const hasConfiguredKeys = Boolean(env.web3FormsAccessKey || (env.telegramBotToken && env.telegramChatId));
+  // In development without keys, simulate successful submission
+  const success = hasConfiguredKeys ? emailSent || telegramSent : true;
 
   return {
     success,

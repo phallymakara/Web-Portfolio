@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircle2, AlertCircle, Mail } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { sendContactMessage } from '../../services/contactService';
+import { env } from '../../config/env';
 
 interface FormState {
   name: string;
@@ -146,7 +147,7 @@ export const ContactForm: React.FC = () => {
                 <span>{submissionError}</span>
               </div>
               <a
-                href={`mailto:phallymakara01@gmail.com?subject=${encodeURIComponent('Portfolio Contact from ' + formData.name)}&body=${encodeURIComponent(formData.message)}`}
+                href={`mailto:${env.contactEmail}?subject=${encodeURIComponent('Portfolio Contact from ' + formData.name)}&body=${encodeURIComponent(formData.message)}`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-medium w-fit transition-colors"
               >
                 <Mail className="w-3.5 h-3.5" />
